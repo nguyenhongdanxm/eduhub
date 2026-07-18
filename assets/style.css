@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
 body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Nunito', system-ui, sans-serif;
 }
 
 .hero-bg {
-    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 45%, #c084fc 100%);
 }
 
 .card-hover {
@@ -14,7 +14,7 @@ body {
 
 .card-hover:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
 }
 
 .tab-btn {
@@ -28,7 +28,7 @@ body {
 }
 
 .tab-btn.active {
-    background: #4f46e5;
+    background: #6366f1;
     color: white;
 }
 
@@ -41,8 +41,12 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Snake canvas responsive */
 #snakeCanvas {
     max-width: 100%;
     height: auto;
+}
+
+.topic-card {
+    border-radius: 1.25rem;
+    overflow: hidden;
 }
