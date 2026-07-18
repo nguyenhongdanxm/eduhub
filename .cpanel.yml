@@ -1,8 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/capnachi/public_html/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp admin.html $DEPLOYPATH
-    - /bin/cp -R assets $DEPLOYPATH
-    - /bin/cp README.md $DEPLOYPATH
+    - export DEPLOYPATH=/home/capnachi/public_html/eduhub/
+    - /bin/cp -R * $DEPLOYPATH
