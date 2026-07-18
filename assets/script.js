@@ -25,26 +25,31 @@ const KEYS = {
 };
 
 const defaultTopics = [
-    { id: 1, name: 'Tiếng Việt', desc: 'Đọc – Viết – Nghe – Nói (Kết nối tri thức)', icon: 'fa-book-open' },
-    { id: 2, name: 'Toán', desc: 'Số học, hình học cơ bản lớp 1-5', icon: 'fa-calculator' },
-    { id: 3, name: 'Tự nhiên và Xã hội', desc: 'Khám phá thế giới xung quanh', icon: 'fa-leaf' },
-    { id: 4, name: 'Đạo đức', desc: 'Giáo dục phẩm chất, kỹ năng sống', icon: 'fa-heart' },
-    { id: 5, name: 'Tiếng Anh', desc: 'Ngoại ngữ tiểu học', icon: 'fa-language' },
-    { id: 6, name: 'Tin học', desc: 'Làm quen máy tính & công nghệ', icon: 'fa-laptop' },
-    { id: 7, name: 'Mỹ thuật', desc: 'Vẽ, thủ công, sáng tạo', icon: 'fa-palette' },
-    { id: 8, name: 'Âm nhạc', desc: 'Hát, nghe nhạc, nhịp điệu', icon: 'fa-music' }
+    { id: 1, name: 'Tiếng Việt lớp 1', desc: 'Học chữ, đọc – viết theo Kết nối tri thức', icon: 'fa-book-open' },
+    { id: 2, name: 'Tiếng Việt lớp 2', desc: 'Đọc hiểu, luyện từ & câu', icon: 'fa-book' },
+    { id: 3, name: 'Tiếng Việt lớp 3', desc: 'Tập làm văn, kể chuyện', icon: 'fa-pen-fancy' },
+    { id: 4, name: 'Tiếng Việt lớp 4', desc: 'Văn bản, kỹ năng viết', icon: 'fa-feather' },
+    { id: 5, name: 'Tiếng Việt lớp 5', desc: 'Đọc hiểu nâng cao, làm văn', icon: 'fa-graduation-cap' },
+    { id: 6, name: 'Toán', desc: 'Số học, hình học lớp 1-5', icon: 'fa-calculator' },
+    { id: 7, name: 'Tự nhiên và Xã hội', desc: 'Khám phá thế giới quanh ta', icon: 'fa-leaf' },
+    { id: 8, name: 'Đạo đức', desc: 'Kỹ năng sống, phẩm chất', icon: 'fa-heart' }
 ];
 
 const defaultVideos = [
-    { id: 1, title: 'Học chữ cái Tiếng Việt lớp 1', youtubeId: 'dQw4w9wgxcq', duration: '12 phút', topicId: 1 },
-    { id: 2, title: 'Đếm số và phép cộng lớp 1-2', youtubeId: '3JZ_D3ELwOQ', duration: '10 phút', topicId: 2 },
-    { id: 3, title: 'Khám phá thiên nhiên quanh ta', youtubeId: 'kXYiU_JCYtU', duration: '15 phút', topicId: 3 }
+    { id: 1, title: 'Bài đọc: Chuột nhà và chuột đồng - TV lớp 1', youtubeId: '8_hhplvTTpM', duration: '2:33', topicId: 1 },
+    { id: 2, title: 'Bài đọc: Kiến và dế mèn - TV lớp 1', youtubeId: 'aa_9p3gRT8Y', duration: '2:18', topicId: 1 },
+    { id: 3, title: 'Bài đọc: Bài học đầu tiên của thỏ con - TV lớp 1', youtubeId: 'X9GkCQ9tthY', duration: '2:08', topicId: 1 },
+    { id: 4, title: 'Bài đọc: Quạ và đàn bồ câu - TV lớp 1', youtubeId: 'To8Bs2aM0B8', duration: '1:32', topicId: 1 },
+    { id: 5, title: 'Bài hát: Lời chào đi trước - TV lớp 1', youtubeId: 'OEtFE6GzT74', duration: '3:24', topicId: 1 },
+    { id: 6, title: 'Nhạc trí nhớ: Câu chuyện của rễ - TV lớp 1', youtubeId: 'Rk2uAYdme-w', duration: '3:14', topicId: 1 },
+    { id: 7, title: 'Nhạc trí nhớ: Giờ ra chơi - TV lớp 1', youtubeId: '8IvTNBAJxXs', duration: '2:20', topicId: 1 },
+    { id: 8, title: 'Nhạc trí nhớ: Cây bàng và lớp học - TV lớp 1', youtubeId: 'f2fIi95F50U', duration: '2:26', topicId: 1 }
 ];
 
 const defaultDocs = [
     { id: 1, title: 'Bài tập Tiếng Việt lớp 1 - Kết nối tri thức', pages: '28 trang', code: 'TVLOP1', url: '', topicId: 1 },
-    { id: 2, title: 'Toán lớp 2 - Phép cộng trừ trong phạm vi 100', pages: '32 trang', code: 'TOAN2', url: '', topicId: 2 },
-    { id: 3, title: 'Tự nhiên và Xã hội lớp 3', pages: '24 trang', code: 'TNXH3', url: '', topicId: 3 }
+    { id: 2, title: 'Bài tập Tiếng Việt lớp 2', pages: '32 trang', code: 'TVLOP2', url: '', topicId: 2 },
+    { id: 3, title: 'Bài tập Tiếng Việt lớp 3', pages: '30 trang', code: 'TVLOP3', url: '', topicId: 3 }
 ];
 
 function getData(key) {
@@ -55,7 +60,7 @@ function setData(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 function initData() {
-    const DATA_VERSION = 2;
+    const DATA_VERSION = 3;
     if (getData('eduhub_data_version') !== DATA_VERSION) {
         localStorage.removeItem(KEYS.topics);
         localStorage.removeItem(KEYS.videos);
