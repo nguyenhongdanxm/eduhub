@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduHub - Nền tảng Giáo dục Thông minh</title>
+    <title>EduHub Tiểu học - Kết nối tri thức với cuộc sống</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/style.css">
-    <!-- Firebase SDK (Google Login) -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Navbar -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">E</div>
-                <span class="text-2xl font-bold text-gray-900">EduHub</span>
+                <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">E</div>
+                <span class="text-2xl font-bold text-gray-900">EduHub Tiểu học</span>
             </a>
-            
             <div class="hidden md:flex items-center space-x-8 font-medium">
                 <a href="#videos" class="hover:text-indigo-600 transition">Video</a>
-                <a href="#games" class="hover:text-indigo-600 transition">Game AI</a>
+                <a href="#games" class="hover:text-indigo-600 transition">Game học tập</a>
                 <a href="#docs" class="hover:text-indigo-600 transition">Tài liệu</a>
-                <a href="#topics" class="hover:text-indigo-600 transition">Chuyên đề</a>
+                <a href="#topics" class="hover:text-indigo-600 transition">Môn học</a>
             </div>
-
             <div class="flex items-center space-x-3">
                 <div id="userInfo" class="hidden items-center space-x-3">
                     <img id="userAvatar" class="w-9 h-9 rounded-full border-2 border-indigo-200" alt="avatar">
@@ -45,23 +41,22 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <header class="hero-bg text-white">
         <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                        Học tập thông minh với <span class="text-yellow-300">Video</span>, <span class="text-yellow-300">Game AI</span> & Tài liệu
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                        Học vui cùng <span class="text-yellow-300">Sách Kết nối tri thức</span>
                     </h1>
                     <p class="text-lg md:text-xl text-indigo-100 mb-8">
-                        Nền tảng giáo dục hiện đại – Kiến thức trở nên thú vị, dễ tiếp cận và có hệ thống quản trị mạnh mẽ.
+                        Nền tảng học tập dành cho học sinh Tiểu học theo chương trình GDPT 2018 – Bộ sách Kết nối tri thức với cuộc sống.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#videos" class="bg-white text-indigo-700 px-7 py-3.5 rounded-2xl font-semibold hover:scale-105 transition flex items-center gap-2">
-                            Khám phá ngay <i class="fas fa-arrow-right"></i>
+                        <a href="#topics" class="bg-white text-indigo-700 px-7 py-3.5 rounded-2xl font-semibold hover:scale-105 transition flex items-center gap-2">
+                            Xem các môn học <i class="fas fa-arrow-right"></i>
                         </a>
                         <button onclick="loginWithGoogle()" class="border-2 border-white/80 px-7 py-3.5 rounded-2xl font-semibold hover:bg-white/10 transition">
-                            Tham gia cộng đồng
+                            Tham gia học tập
                         </button>
                     </div>
                 </div>
@@ -69,20 +64,20 @@
                     <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
                         <div class="grid grid-cols-2 gap-4 text-center">
                             <div class="bg-white/20 rounded-2xl p-5">
-                                <div class="text-3xl font-bold">120+</div>
-                                <div class="text-sm opacity-90">Video</div>
+                                <div class="text-3xl font-bold">8</div>
+                                <div class="text-sm opacity-90">Môn học</div>
                             </div>
                             <div class="bg-white/20 rounded-2xl p-5">
-                                <div class="text-3xl font-bold">45+</div>
-                                <div class="text-sm opacity-90">Game AI</div>
+                                <div class="text-3xl font-bold">1-5</div>
+                                <div class="text-sm opacity-90">Lớp</div>
                             </div>
                             <div class="bg-white/20 rounded-2xl p-5">
-                                <div class="text-3xl font-bold">80+</div>
-                                <div class="text-sm opacity-90">Tài liệu</div>
+                                <div class="text-3xl font-bold">Video</div>
+                                <div class="text-sm opacity-90">Bài giảng</div>
                             </div>
                             <div class="bg-white/20 rounded-2xl p-5">
-                                <div class="text-3xl font-bold">25+</div>
-                                <div class="text-sm opacity-90">Chuyên đề</div>
+                                <div class="text-3xl font-bold">Game</div>
+                                <div class="text-sm opacity-90">Học mà chơi</div>
                             </div>
                         </div>
                     </div>
@@ -91,41 +86,33 @@
         </div>
     </header>
 
-    <!-- Topics / Chuyên đề -->
     <section id="topics" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3">Chuyên đề nổi bật</h2>
-                <p class="text-gray-600">Các thư mục kiến thức được tổ chức khoa học</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Các môn học Tiểu học</h2>
+                <p class="text-gray-600">Theo chương trình Kết nối tri thức với cuộc sống</p>
             </div>
-            <div id="topicsList" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="topicsList" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
     </section>
 
-    <!-- Videos -->
     <section id="videos" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3">Thư viện Video YouTube</h2>
-                <p class="text-gray-600">Video giáo dục chất lượng cao</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Video bài giảng Tiểu học</h2>
+                <p class="text-gray-600">Bài giảng dễ hiểu, gần gũi với học sinh</p>
             </div>
-            <div id="videosList" class="grid md:grid-cols-3 gap-8">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="videosList" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
-    <!-- Games -->
     <section id="games" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3">Game do AI Viết</h2>
-                <p class="text-gray-600">Trải nghiệm học tập qua trò chơi tương tác</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Game học tập vui nhộn</h2>
+                <p class="text-gray-600">Học mà chơi – Chơi mà học</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Snake Game -->
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 card-hover">
                     <div class="p-6">
                         <h3 class="font-bold text-xl mb-4 flex items-center gap-2">
@@ -133,110 +120,92 @@
                         </h3>
                         <canvas id="snakeCanvas" width="280" height="280" class="border-2 border-gray-200 mx-auto block bg-black rounded-xl"></canvas>
                         <p class="text-center text-sm text-gray-500 mt-3">Dùng phím mũi tên để chơi</p>
-                        <button onclick="startSnakeGame()" class="mt-5 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-2xl font-medium transition">
-                            Chơi ngay
-                        </button>
+                        <button onclick="startSnakeGame()" class="mt-5 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-2xl font-medium transition">Chơi ngay</button>
                     </div>
                 </div>
-
-                <!-- Puzzle Math -->
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 card-hover flex flex-col">
                     <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-10 flex-1 flex items-center justify-center text-white">
                         <div class="text-center">
                             <i class="fas fa-puzzle-piece text-5xl mb-4"></i>
-                            <h3 class="text-2xl font-bold">Puzzle Math</h3>
+                            <h3 class="text-2xl font-bold">Puzzle Toán</h3>
                         </div>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 mb-5">Giải toán qua trò chơi ghép hình. Được AI tạo ra để luyện tư duy logic.</p>
-                        <button onclick="alert('Game Puzzle Math sẽ được cập nhật sớm!')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-2xl font-medium transition">
-                            Chơi Puzzle Math
-                        </button>
+                        <p class="text-gray-600 mb-5">Giải toán qua trò chơi ghép hình, luyện tư duy logic cho học sinh tiểu học.</p>
+                        <button onclick="alert('Game đang được cập nhật!')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-2xl font-medium transition">Chơi Puzzle Toán</button>
                     </div>
                 </div>
-
-                <!-- Space Quiz -->
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 card-hover flex flex-col">
                     <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-10 flex-1 flex items-center justify-center text-white">
                         <div class="text-center">
-                            <i class="fas fa-rocket text-5xl mb-4"></i>
-                            <h3 class="text-2xl font-bold">Space Quiz</h3>
+                            <i class="fas fa-spell-check text-5xl mb-4"></i>
+                            <h3 class="text-2xl font-bold">Đố chữ</h3>
                         </div>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 mb-5">Trắc nghiệm kiến thức vũ trụ với phần thưởng thú vị.</p>
-                        <button onclick="alert('Space Quiz đang được phát triển!')" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-2xl font-medium transition">
-                            Bắt đầu Quiz
-                        </button>
+                        <p class="text-gray-600 mb-5">Luyện từ vựng Tiếng Việt và Tiếng Anh qua trò chơi đố chữ vui nhộn.</p>
+                        <button onclick="alert('Game đang được phát triển!')" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-2xl font-medium transition">Bắt đầu đố chữ</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Documents -->
     <section id="docs" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3">Tài liệu Giáo dục</h2>
-                <p class="text-gray-600">Xem trước miễn phí – Tải về bằng mã xác thực</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Tài liệu & Bài tập</h2>
+                <p class="text-gray-600">Tài liệu theo sách Kết nối tri thức</p>
             </div>
-            <div id="docsList" class="grid md:grid-cols-3 gap-8">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="docsList" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
-    <!-- Payment QR -->
     <section class="py-16 bg-white">
         <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-4">Thanh toán khóa học / Ủng hộ</h2>
-            <p class="text-gray-600 mb-8">Quét mã QR VietQR để thanh toán nhanh chóng</p>
+            <h2 class="text-3xl font-bold mb-4">Ủng hộ / Đóng góp</h2>
+            <p class="text-gray-600 mb-8">Quét mã QR để ủng hộ duy trì nền tảng</p>
             <div class="bg-gray-50 rounded-3xl p-8 inline-block border border-gray-200">
                 <div class="w-56 h-56 bg-white mx-auto rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-300 mb-4">
                     <div class="text-center text-gray-400">
                         <i class="fas fa-qrcode text-6xl mb-2"></i>
                         <p class="text-sm">Mã QR VietQR</p>
-                        <p class="text-xs mt-1">(Thay bằng mã thật của bạn)</p>
                     </div>
                 </div>
                 <p class="font-medium">Ngân hàng: Vietcombank</p>
                 <p class="text-sm text-gray-500">STK: 0123456789 – Chủ TK: EduHub</p>
-                <p class="text-indigo-600 font-semibold mt-2">Nội dung: EDUHUB + Số điện thoại</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-14">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
             <div>
                 <div class="flex items-center space-x-3 mb-5">
-                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">E</div>
-                    <span class="text-2xl font-bold">EduHub</span>
+                    <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">E</div>
+                    <span class="text-2xl font-bold">EduHub Tiểu học</span>
                 </div>
-                <p class="text-gray-400 text-sm">Nền tảng giáo dục sáng tạo – Học tập vui vẻ, kiến thức vững chắc.</p>
+                <p class="text-gray-400 text-sm">Học tập theo chương trình Kết nối tri thức với cuộc sống.</p>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Khám phá</h4>
                 <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="#videos" class="hover:text-white">Video</a></li>
-                    <li><a href="#games" class="hover:text-white">Game AI</a></li>
+                    <li><a href="#games" class="hover:text-white">Game</a></li>
                     <li><a href="#docs" class="hover:text-white">Tài liệu</a></li>
-                    <li><a href="#topics" class="hover:text-white">Chuyên đề</a></li>
+                    <li><a href="#topics" class="hover:text-white">Môn học</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Quản trị</h4>
                 <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="admin.html" class="hover:text-white">Admin Panel</a></li>
-                    <li><a href="#" onclick="loginWithGoogle()" class="hover:text-white">Đăng nhập</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Liên hệ</h4>
                 <p class="text-gray-400 text-sm">support@eduhub.vn</p>
-                <p class="text-gray-400 text-sm mt-1">© 2026 EduHub. All rights reserved.</p>
+                <p class="text-gray-400 text-sm mt-1">© 2026 EduHub Tiểu học</p>
             </div>
         </div>
     </footer>
