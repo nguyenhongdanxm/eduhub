@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - EduHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Top bar -->
+    <div class="bg-white shadow-sm border-b sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-indigo-600 font-bold">
+                <div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center">E</div>
+                EduHub Admin
+            </a>
+            <div class="flex items-center gap-4">
+                <span id="adminUser" class="text-sm text-gray-600"></span>
+                <a href="index.html" class="text-sm text-gray-500 hover:text-indigo-600">← Về trang chủ</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-2">Bảng điều khiển Quản trị</h1>
+        <p class="text-gray-500 mb-8">Quản lý toàn bộ nội dung hiển thị trên trang chủ: Chuyên đề, Video, Tài liệu</p>
+
+        <!-- Stats -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border">
+                <div class="text-gray-500 text-sm mb-1">Chuyên đề</div>
+                <div class="text-3xl font-bold text-indigo-600" id="statTopics">0</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border">
+                <div class="text-gray-500 text-sm mb-1">Video YouTube</div>
+                <div class="text-3xl font-bold text-green-600" id="statVideos">0</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border">
+                <div class="text-gray-500 text-sm mb-1">Tài liệu</div>
+                <div class="text-3xl font-bold text-purple-600" id="statDocs">0</div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border">
+                <div class="text-gray-500 text-sm mb-1">Người dùng</div>
+                <div class="text-3xl font-bold text-orange-600" id="statUsers">0</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex flex-wrap gap-2 mb-6 border-b pb-4">
+            <button onclick="showTab('topics')" id="tab-topics" class="tab-btn active px-5 py-2.5 rounded-xl font-medium">
+                <i class="fas fa-folder mr-2"></i>Chuyên đề
+            </button>
+            <button onclick="showTab('videos')" id="tab-videos" class="tab-btn px-5 py-2.5 rounded-xl font-medium">
+                <i class="fab fa-youtube mr-2"></i>Video YouTube
+            </button>
+            <button onclick="showTab('docs')" id="tab-docs" class="tab-btn px-5 py-2.5 rounded-xl font-medium">
+                <i class="fas fa-file-pdf mr-2"></i>Tài liệu
+            </button>
+            <button onclick="showTab('users')" id="tab-users" class="tab-btn px-5 py-2.5 rounded-xl font-medium">
+                <i class="fas fa-users mr-2"></i>Tài khoản
+            </button>
+            <button onclick="showTab('payment')" id="tab-payment" class="tab-btn px-5 py-2.5 rounded-xl font-medium">
+                <i class="fas fa-qrcode mr-2"></i>Thanh toán QR
+            </button>
+        </div>
+
+        <!-- TAB: CHUYÊN ĐỀ -->
+        <div id="panel-topics" class="tab-panel">
+            <div class="bg-white rounded-2xl shadow-sm border p-6 mb-6">
+                <h3 class="font-bold text-lg mb-4" id="topicFormTitle">Thêm chuyên đề / thư mục mới</h3>
+                <input type="hidden" id="topicEditId" value="">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <input id="topicName" type="text" placeholder="Tên chuyên đề *" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-300 outline-none">
+                    <input id="topicDesc" type="text" placeholder="Mô tả ngắn" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-300 outline-none">
+                    <input id="topicIcon" type="text" placeholder="Icon FontAwesome (vd: fa-book)" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-300 outline-none" value="fa-folder">
+                </div>
+                <div class="mt-4 flex gap-3">
+                    <button onclick="saveTopic()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium">
+                        <i class="fas fa-save mr-2"></i><span id="topicBtnText">Thêm chuyên đề</span>
+                    </button>
+                    <button onclick="cancelEditTopic()" id="btnCancelTopic" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+            <div id="adminTopicsList" class="space-y-3"></div>
+        </div>
+
+        <!-- TAB: VIDEO -->
+        <div id="panel-videos" class="tab-panel hidden">
+            <div class="bg-white rounded-2xl shadow-sm border p-6 mb-6">
+                <h3 class="font-bold text-lg mb-4" id="videoFormTitle">Thêm video YouTube</h3>
+                <input type="hidden" id="videoEditId" value="">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input id="videoTitle" type="text" placeholder="Tiêu đề video *" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-green-300 outline-none">
+                    <input id="videoId" type="text" placeholder="YouTube ID hoặc link đầy đủ *" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-green-300 outline-none">
+                    <input id="videoDuration" type="text" placeholder="Thời lượng (vd: 15 phút)" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-green-300 outline-none">
+                    <select id="videoTopic" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-green-300 outline-none">
+                        <option value="">-- Chọn chuyên đề --</option>
+                    </select>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Bạn có thể dán link YouTube đầy đủ hoặc chỉ ID</p>
+                <div class="mt-4 flex gap-3">
+                    <button onclick="saveVideo()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-medium">
+                        <i class="fas fa-save mr-2"></i><span id="videoBtnText">Thêm Video</span>
+                    </button>
+                    <button onclick="cancelEditVideo()" id="btnCancelVideo" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+            <div id="adminVideosList" class="space-y-3"></div>
+        </div>
+
+        <!-- TAB: TÀI LIỆU -->
+        <div id="panel-docs" class="tab-panel hidden">
+            <div class="bg-white rounded-2xl shadow-sm border p-6 mb-6">
+                <h3 class="font-bold text-lg mb-4" id="docFormTitle">Thêm tài liệu</h3>
+                <input type="hidden" id="docEditId" value="">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input id="docTitle" type="text" placeholder="Tên tài liệu *" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-300 outline-none">
+                    <input id="docPages" type="text" placeholder="Số trang (vd: 24 trang)" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-300 outline-none">
+                    <input id="docCode" type="text" placeholder="Mã tải về (để trống = tự tạo)" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-300 outline-none">
+                    <input id="docUrl" type="text" placeholder="Link file PDF (tùy chọn)" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-300 outline-none">
+                    <select id="docTopic" class="border rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-300 outline-none md:col-span-2">
+                        <option value="">-- Chọn chuyên đề (tùy chọn) --</option>
+                    </select>
+                </div>
+                <div class="mt-4 flex gap-3">
+                    <button onclick="saveDoc()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium">
+                        <i class="fas fa-save mr-2"></i><span id="docBtnText">Thêm Tài liệu</span>
+                    </button>
+                    <button onclick="cancelEditDoc()" id="btnCancelDoc" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+            <div id="adminDocsList" class="space-y-3"></div>
+        </div>
+
+        <!-- TAB: USERS -->
+        <div id="panel-users" class="tab-panel hidden">
+            <div class="bg-white rounded-2xl shadow-sm border p-6">
+                <h3 class="font-bold text-lg mb-4">Danh sách tài khoản đã đăng nhập</h3>
+                <p class="text-sm text-gray-500 mb-4">Dữ liệu lưu trên trình duyệt (localStorage).</p>
+                <div id="adminUsersList" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <!-- TAB: PAYMENT -->
+        <div id="panel-payment" class="tab-panel hidden">
+            <div class="bg-white rounded-2xl shadow-sm border p-6">
+                <h3 class="font-bold text-lg mb-4">Cấu hình thanh toán QR</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input id="payBank" type="text" placeholder="Tên ngân hàng" class="border rounded-xl px-4 py-3">
+                    <input id="payAccount" type="text" placeholder="Số tài khoản" class="border rounded-xl px-4 py-3">
+                    <input id="payName" type="text" placeholder="Tên chủ tài khoản" class="border rounded-xl px-4 py-3">
+                    <input id="payContent" type="text" placeholder="Nội dung chuyển khoản" class="border rounded-xl px-4 py-3">
+                </div>
+                <button onclick="savePayment()" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium">
+                    <i class="fas fa-save mr-2"></i>Lưu cấu hình
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAdminData();
+            showTab('topics');
+        });
+    </script>
+</body>
+</html>
