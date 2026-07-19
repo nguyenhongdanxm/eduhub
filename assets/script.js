@@ -2,12 +2,11 @@
 const firebaseConfig={apiKey:"YOUR_API_KEY",authDomain:"YOUR_PROJECT.firebaseapp.com",projectId:"YOUR_PROJECT_ID",storageBucket:"YOUR_PROJECT.appspot.com",messagingSenderId:"YOUR_SENDER_ID",appId:"YOUR_APP_ID"};
 let auth=null;try{if(firebaseConfig.apiKey!=="YOUR_API_KEY"){firebase.initializeApp(firebaseConfig);auth=firebase.auth();}}catch(e){}
 const KEYS={subjects:'eduhub_subjects',videos:'eduhub_videos',vanBan:'eduhub_vanban',faq:'eduhub_faq',apps:'eduhub_apps',keHoach:'eduhub_kehoach',bieuMau:'eduhub_bieumau',deThi:'eduhub_dethi',sangKien:'eduhub_sangkien',resources:'eduhub_resources',baiHoc:'eduhub_baihoc',users:'eduhub_users',currentUser:'eduhub_currentUser'};
-const DATA_VERSION=10;
+const DATA_VERSION=9;
 const defaultSubjects=[{id:1,name:'Tiếng Việt',desc:'Giáo án theo lớp 1–5 · Sách Kết nối tri thức',icon:'fa-book-open',color:'rose'},{id:2,name:'Toán',desc:'Giáo án theo lớp 1–5',icon:'fa-calculator',color:'sky'},{id:3,name:'Tự nhiên và Xã hội',desc:'Khám phá thế giới quanh ta',icon:'fa-leaf',color:'emerald'},{id:4,name:'Đạo đức',desc:'Phẩm chất, kỹ năng sống',icon:'fa-heart',color:'amber'},{id:5,name:'Tiếng Anh',desc:'Ngoại ngữ tiểu học',icon:'fa-language',color:'violet'},{id:6,name:'Tin học',desc:'Công nghệ & máy tính',icon:'fa-laptop',color:'cyan'},{id:7,name:'Mỹ thuật',desc:'Vẽ, thủ công',icon:'fa-palette',color:'pink'},{id:8,name:'Âm nhạc',desc:'Hát, nhạc cụ',icon:'fa-music',color:'indigo'},{id:9,name:'GD Thể chất',desc:'Vận động, sức khỏe',icon:'fa-running',color:'orange'},{id:10,name:'HĐ Trải nghiệm',desc:'STEM, ngoại khóa',icon:'fa-hands-helping',color:'teal'}];
 
 /* ===== Mục lục Tiếng Việt 1 – Kết nối tri thức với cuộc sống ===== */
 const defaultBaiHocTV1=[
-  /* --- Tập 1 --- */
   {stt:0,title:'Chào em vào lớp 1',content:'Tiếng Việt 1 tập 1 · Kết nối tri thức với cuộc sống. Làm quen trường lớp, bạn bè, đồ dùng học tập.'},
   {stt:5,title:'Bài 5: Búp bê và dế mèn',content:'Tập 1 · Bài đọc / kể chuyện'},
   {stt:10,title:'Bài 10: Đàn kiến con ngoan ngoãn',content:'Tập 1 · Bài đọc / kể chuyện'},
@@ -29,16 +28,12 @@ const defaultBaiHocTV1=[
   {stt:82,title:'Bài 82: Ôn tập',content:'Tập 1 · Ôn tập'},
   {stt:83,title:'Bài 83: Ôn tập',content:'Tập 1 · Ôn tập'},
   {stt:84,title:'Đánh giá cuối học kì',content:'Tập 1 · Đánh giá cuối học kì 1'},
-
-  /* --- Tập 2 · Chủ đề 1: Tôi và các bạn --- */
   {stt:101,title:'Bài 1: Tôi là học sinh lớp 1',content:'Tập 2 · Chủ đề 1: Tôi và các bạn'},
   {stt:102,title:'Bài 2: Đôi tai xấu xí',content:'Tập 2 · Chủ đề 1: Tôi và các bạn'},
   {stt:103,title:'Bài 3: Bạn của gió',content:'Tập 2 · Chủ đề 1: Tôi và các bạn'},
   {stt:104,title:'Bài 4: Giải thưởng tình bạn',content:'Tập 2 · Chủ đề 1: Tôi và các bạn'},
   {stt:105,title:'Bài 5: Sinh nhật của voi con',content:'Tập 2 · Chủ đề 1: Tôi và các bạn'},
   {stt:106,title:'Ôn tập (Chủ đề 1)',content:'Tập 2 · Chủ đề 1: Tôi và các bạn · Ôn tập'},
-
-  /* --- Chủ đề 2: Mái ấm gia đình --- */
   {stt:111,title:'Bài 1: Nụ hôn trên bàn tay',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình'},
   {stt:112,title:'Bài 2: Làm anh',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình'},
   {stt:113,title:'Bài 3: Cả nhà đi chơi núi',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình'},
@@ -46,8 +41,6 @@ const defaultBaiHocTV1=[
   {stt:115,title:'Bài 5: Bữa cơm gia đình',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình'},
   {stt:116,title:'Bài 6: Ngôi nhà',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình'},
   {stt:117,title:'Ôn tập (Chủ đề 2)',content:'Tập 2 · Chủ đề 2: Mái ấm gia đình · Ôn tập'},
-
-  /* --- Chủ đề 3: Mái trường mến yêu --- */
   {stt:121,title:'Bài 1: Tôi đi học',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu'},
   {stt:122,title:'Bài 2: Đi học',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu'},
   {stt:123,title:'Bài 3: Hoa yêu thương',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu'},
@@ -55,32 +48,24 @@ const defaultBaiHocTV1=[
   {stt:125,title:'Bài 5: Bác trống trường',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu'},
   {stt:126,title:'Bài 6: Giờ ra chơi',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu'},
   {stt:127,title:'Ôn tập (Chủ đề 3)',content:'Tập 2 · Chủ đề 3: Mái trường mến yêu · Ôn tập'},
-
-  /* --- Chủ đề 4: Điều em cần biết --- */
   {stt:131,title:'Bài 1: Rửa tay trước khi ăn',content:'Tập 2 · Chủ đề 4: Điều em cần biết'},
   {stt:132,title:'Bài 2: Lời chào đi trước',content:'Tập 2 · Chủ đề 4: Điều em cần biết'},
   {stt:133,title:'Bài 3: Khi mẹ vắng nhà',content:'Tập 2 · Chủ đề 4: Điều em cần biết'},
   {stt:134,title:'Bài 4: Nếu không may bị lạc',content:'Tập 2 · Chủ đề 4: Điều em cần biết'},
   {stt:135,title:'Bài 5: Đèn giao thông',content:'Tập 2 · Chủ đề 4: Điều em cần biết'},
   {stt:136,title:'Ôn tập (Chủ đề 4)',content:'Tập 2 · Chủ đề 4: Điều em cần biết · Ôn tập'},
-
-  /* --- Chủ đề 5: Bài học từ cuộc sống --- */
   {stt:141,title:'Bài 1: Kiến và chim bồ câu',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống'},
   {stt:142,title:'Bài 2: Câu chuyện của rễ',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống'},
   {stt:143,title:'Bài 3: Câu hỏi của sói',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống'},
   {stt:144,title:'Bài 4: Chú bé chăn cừu',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống'},
   {stt:145,title:'Bài 5: Tiếng vọng của núi',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống'},
   {stt:146,title:'Ôn tập (Chủ đề 5)',content:'Tập 2 · Chủ đề 5: Bài học từ cuộc sống · Ôn tập'},
-
-  /* --- Chủ đề 6: Thiên nhiên kì thú --- */
   {stt:151,title:'Bài 1: Loài chim của biển cả',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú'},
   {stt:152,title:'Bài 2: Bảy sắc cầu vồng',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú'},
   {stt:153,title:'Bài 3: Chúa tể rừng xanh',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú'},
   {stt:154,title:'Bài 4: Cuộc thi tài năng rừng xanh',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú'},
   {stt:155,title:'Bài 5: Cây liễu dẻo dai',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú'},
   {stt:156,title:'Ôn tập (Chủ đề 6)',content:'Tập 2 · Chủ đề 6: Thiên nhiên kì thú · Ôn tập'},
-
-  /* --- Chủ đề 7: Thế giới trong mắt em --- */
   {stt:161,title:'Bài 1: Tia nắng đi đâu?',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em'},
   {stt:162,title:'Bài 2: Trong giấc mơ buổi sáng',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em'},
   {stt:163,title:'Bài 3: Ngày mới bắt đầu',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em'},
@@ -89,8 +74,6 @@ const defaultBaiHocTV1=[
   {stt:166,title:'Bài 6: Buổi trưa hè',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em'},
   {stt:167,title:'Bài 7: Hoa phượng',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em'},
   {stt:168,title:'Ôn tập (Chủ đề 7)',content:'Tập 2 · Chủ đề 7: Thế giới trong mắt em · Ôn tập'},
-
-  /* --- Chủ đề 8: Đất nước và con người --- */
   {stt:171,title:'Bài 1: Cậu bé thông minh',content:'Tập 2 · Chủ đề 8: Đất nước và con người'},
   {stt:172,title:'Bài 2: Lính cứu hỏa',content:'Tập 2 · Chủ đề 8: Đất nước và con người'},
   {stt:173,title:'Bài 3: Lớn lên bạn làm gì?',content:'Tập 2 · Chủ đề 8: Đất nước và con người'},
@@ -98,8 +81,6 @@ const defaultBaiHocTV1=[
   {stt:175,title:'Bài 5: Nhớ ơn',content:'Tập 2 · Chủ đề 8: Đất nước và con người'},
   {stt:176,title:'Bài 6: Du lịch biển Việt Nam',content:'Tập 2 · Chủ đề 8: Đất nước và con người'},
   {stt:177,title:'Ôn tập (Chủ đề 8)',content:'Tập 2 · Chủ đề 8: Đất nước và con người · Ôn tập'},
-
-  /* --- Ôn tập và đánh giá cuối năm --- */
   {stt:181,title:'Bài 1: Ôn tập',content:'Tập 2 · Ôn tập và đánh giá cuối năm học'},
   {stt:182,title:'Bài 2: Ôn tập',content:'Tập 2 · Ôn tập và đánh giá cuối năm học'},
   {stt:183,title:'Bài 3: Ôn tập',content:'Tập 2 · Ôn tập và đánh giá cuối năm học'},
@@ -142,8 +123,8 @@ function initData(){
   if(!getData(KEYS.sangKien))setData(KEYS.sangKien,defaultSangKien);
   if(!getData(KEYS.users))setData(KEYS.users,[]);
 
-  // Force-merge mục lục TV lớp 1 (không xóa lớp/môn khác)
-  if(getData('eduhub_baihoc_tv1_v2')!==2){
+  // Cập nhật mục lục TV lớp 1 theo danh sách KNTT (giữ lớp/môn khác)
+  if(getData('eduhub_baihoc_tv1_v3')!==3){
     var all=getData(KEYS.baiHoc)||[];
     all=all.filter(function(b){return !(b.subjectId==1&&b.lop==1);});
     var next=all.length?Math.max.apply(null,all.map(function(b){return b.id;}))+1:1;
@@ -151,7 +132,7 @@ function initData(){
       all.push({id:next++,subjectId:1,lop:1,stt:b.stt,title:b.title,content:b.content});
     });
     setData(KEYS.baiHoc,all);
-    setData('eduhub_baihoc_tv1_v2',2);
+    setData('eduhub_baihoc_tv1_v3',3);
   }
 }
 function getSubjectName(id){const s=(getData(KEYS.subjects)||[]).find(x=>x.id==id);return s?s.name:''}
@@ -165,7 +146,6 @@ function openBai(baiId){_monState.baiId=baiId;hideAllViews();document.getElement
 function goBackToGrades(){showGradesView()}
 function goBackToLessons(){if(_monState.grade)openGrade(_monState.grade)}
 
-/* ===== VIDEO: thumbnail + click to play ===== */
 function ytThumb(id){return 'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'}
 function playVideo(el,ytId){el.innerHTML='<iframe class="w-full h-full" src="https://www.youtube.com/embed/'+ytId+'?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'}
 function videoCard(v){
