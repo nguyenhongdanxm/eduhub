@@ -11,14 +11,25 @@
 .tab-btn{background:#f1f5f9;color:#475569}
 .tab-btn.active{background:#4f46e5;color:#fff}
 input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:none}
-#baiEditor{min-height:180px;max-height:420px;overflow-y:auto}
+#baiEditor{min-height:220px;max-height:520px;overflow-y:auto;line-height:1.65}
 #baiEditor:focus{outline:none}
-#baiEditor img{max-width:100%;height:auto;border-radius:8px;margin:8px 0}
-#baiEditor p{margin:0.4em 0}
-#baiEditor ul,#baiEditor ol{margin:0.4em 0 0.4em 1.4em}
+#baiEditor img{max-width:100%;height:auto;border-radius:8px;margin:12px 0;display:block}
+#baiEditor p{margin:0.55em 0}
+#baiEditor h1,#baiEditor h2,#baiEditor h3,#baiEditor h4{font-weight:700;margin:0.9em 0 0.35em;line-height:1.3}
+#baiEditor h1{font-size:1.35rem}
+#baiEditor h2{font-size:1.2rem}
+#baiEditor h3{font-size:1.08rem}
+#baiEditor ul,#baiEditor ol{margin:0.5em 0 0.5em 1.5em}
+#baiEditor li{margin:0.2em 0}
+#baiEditor blockquote{border-left:3px solid #c7d2fe;padding:0.4em 0.9em;margin:0.8em 0;color:#475569;background:#f8fafc;border-radius:0 8px 8px 0}
+#baiEditor table{border-collapse:collapse;width:100%;margin:0.8em 0;font-size:0.9em}
+#baiEditor th,#baiEditor td{border:1px solid #e2e8f0;padding:6px 10px;text-align:left}
+#baiEditor th{background:#f1f5f9;font-weight:600}
+#baiEditor figure{margin:0.8em 0}
+#baiEditor figcaption{font-size:0.8rem;color:#64748b;text-align:center;margin-top:4px}
+#baiEditor a{color:#4f46e5;text-decoration:underline}
 .rte-btn{padding:6px 10px;border-radius:8px;font-size:13px;color:#475569;background:#f8fafc;border:1px solid #e2e8f0}
 .rte-btn:hover{background:#eef2ff;color:#4f46e5}
-.rte-btn.active{background:#e0e7ff;color:#4338ca}
 #baiEditor.empty:before{content:attr(data-placeholder);color:#94a3b8;pointer-events:none}
 </style>
 </head>
@@ -84,7 +95,7 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 </div>
 <div class="bg-white rounded-2xl border p-6 text-sm text-slate-600 space-y-2">
 <p><b>Sửa nội dung:</b> Bấm ✏️ → form phía trên điền sẵn → sửa → Lưu.</p>
-<p><b>Bài học:</b> Có thể <b>Ctrl+V dán</b> chữ + ảnh từ Word/web, giữ định dạng. Đính kèm file qua link Drive hoặc chọn ảnh từ máy.</p>
+<p><b>Bài học:</b> Mở bài báo trên web → bôi đen nội dung → <b>Ctrl+C</b> → vào ô soạn thảo → <b>Ctrl+V</b>. Hệ thống giữ tiêu đề, đoạn, ảnh, bảng, trích dẫn.</p>
 </div>
 </div>
 
@@ -120,11 +131,11 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <button type="button" class="rte-btn" onclick="rteCmd('insertOrderedList')" title="Đánh số"><i class="fas fa-list-ol"></i></button>
 <span class="w-px h-5 bg-slate-200 mx-0.5"></span>
 <button type="button" class="rte-btn" onclick="rteInsertImage()" title="Chèn ảnh"><i class="fas fa-image"></i></button>
-<button type="button" class="rte-btn" onclick="rteCmd('formatBlock','H3')" title="Tiêu đề"><i class="fas fa-heading"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('formatBlock','H2')" title="Tiêu đề"><i class="fas fa-heading"></i></button>
 <button type="button" class="rte-btn" onclick="rteCmd('removeFormat')" title="Xóa định dạng"><i class="fas fa-eraser"></i></button>
-<span class="text-xs text-slate-400 ml-2 hidden sm:inline">Ctrl+V dán chữ/ảnh từ Word, web…</span>
+<span class="text-xs text-slate-400 ml-2 hidden sm:inline">Ctrl+V dán bài báo — giữ bố cục</span>
 </div>
-<div id="baiEditor" contenteditable="true" class="border border-t-0 rounded-b-xl px-4 py-3 text-sm w-full mb-3 bg-white" data-placeholder="Nội dung bài học… Dán (Ctrl+V) để giữ định dạng và ảnh."></div>
+<div id="baiEditor" contenteditable="true" class="border border-t-0 rounded-b-xl px-4 py-3 text-sm w-full mb-3 bg-white" data-placeholder="Dán (Ctrl+V) bài viết từ trang báo / Word — giữ nguyên bố cục, tiêu đề, ảnh, bảng…"></div>
 
 <div class="border rounded-xl p-4 mb-3 bg-slate-50">
 <div class="text-xs font-semibold text-slate-500 mb-2 uppercase"><i class="fas fa-paperclip mr-1"></i> Tệp đính kèm</div>
@@ -282,6 +293,7 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <script src="assets/script.js"></script>
 <script src="assets/admin.js"></script>
 <script src="assets/bai-rich.js"></script>
+<script src="assets/paste-clean.js"></script>
 <script>
 function rteCmd(cmd, val){
   document.getElementById('baiEditor').focus();
@@ -330,11 +342,20 @@ document.addEventListener('DOMContentLoaded', function(){
   if(!ed) return;
   ed.addEventListener('paste', function(e){
     var html = e.clipboardData && e.clipboardData.getData('text/html');
-    if(html){
+    if(html && typeof cleanPastedHtml === 'function'){
       e.preventDefault();
-      var clean = html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/on\w+="[^"]*"/gi,'');
-      document.execCommand('insertHTML', false, clean);
+      var clean = cleanPastedHtml(html);
+      if(clean){
+        document.execCommand('insertHTML', false, clean);
+      } else {
+        // fallback plain text
+        var t = e.clipboardData.getData('text/plain') || '';
+        document.execCommand('insertText', false, t);
+      }
+      ed.classList.remove('empty');
+      return;
     }
+    // no HTML — let browser handle plain text / images
   });
   function syncPh(){
     if(!ed.textContent.trim()) ed.classList.add('empty');
