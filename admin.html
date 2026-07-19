@@ -19,6 +19,7 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 .rte-btn{padding:6px 10px;border-radius:8px;font-size:13px;color:#475569;background:#f8fafc;border:1px solid #e2e8f0}
 .rte-btn:hover{background:#eef2ff;color:#4f46e5}
 .rte-btn.active{background:#e0e7ff;color:#4338ca}
+#baiEditor.empty:before{content:attr(data-placeholder);color:#94a3b8;pointer-events:none}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
@@ -83,7 +84,7 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 </div>
 <div class="bg-white rounded-2xl border p-6 text-sm text-slate-600 space-y-2">
 <p><b>Sửa nội dung:</b> Bấm ✏️ → form phía trên điền sẵn → sửa → Lưu.</p>
-<p><b>Bài học:</b> Có thể <b>Ctrl+V dán</b> chữ + ảnh từ Word/web, giữ định dạng. Đính kèm file qua link Drive hoặc chọn từ máy (ảnh nhỏ sẽ nhúng vào bài).</p>
+<p><b>Bài học:</b> Có thể <b>Ctrl+V dán</b> chữ + ảnh từ Word/web, giữ định dạng. Đính kèm file qua link Drive hoặc chọn ảnh từ máy.</p>
 </div>
 </div>
 
@@ -110,7 +111,6 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 </div>
 <input id="baiTitle" placeholder="Tên bài" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3">
 
-<!-- Rich text toolbar -->
 <div class="border rounded-t-xl bg-slate-50 px-2 py-1.5 flex flex-wrap gap-1 items-center">
 <button type="button" class="rte-btn" onclick="rteCmd('bold')" title="Đậm"><i class="fas fa-bold"></i></button>
 <button type="button" class="rte-btn" onclick="rteCmd('italic')" title="Nghiêng"><i class="fas fa-italic"></i></button>
@@ -119,15 +119,13 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <button type="button" class="rte-btn" onclick="rteCmd('insertUnorderedList')" title="Danh sách"><i class="fas fa-list-ul"></i></button>
 <button type="button" class="rte-btn" onclick="rteCmd('insertOrderedList')" title="Đánh số"><i class="fas fa-list-ol"></i></button>
 <span class="w-px h-5 bg-slate-200 mx-0.5"></span>
-<button type="button" class="rte-btn" onclick="rteInsertImage()" title="Chèn ảnh (URL hoặc máy)"><i class="fas fa-image"></i></button>
+<button type="button" class="rte-btn" onclick="rteInsertImage()" title="Chèn ảnh"><i class="fas fa-image"></i></button>
 <button type="button" class="rte-btn" onclick="rteCmd('formatBlock','H3')" title="Tiêu đề"><i class="fas fa-heading"></i></button>
 <button type="button" class="rte-btn" onclick="rteCmd('removeFormat')" title="Xóa định dạng"><i class="fas fa-eraser"></i></button>
 <span class="text-xs text-slate-400 ml-2 hidden sm:inline">Ctrl+V dán chữ/ảnh từ Word, web…</span>
 </div>
-<div id="baiEditor" contenteditable="true" class="border border-t-0 rounded-b-xl px-4 py-3 text-sm w-full mb-3 bg-white prose prose-sm max-w-none" data-placeholder="Nội dung bài học… Dán (Ctrl+V) để giữ định dạng và ảnh."></div>
-<textarea id="baiContent" class="hidden"></textarea>
+<div id="baiEditor" contenteditable="true" class="border border-t-0 rounded-b-xl px-4 py-3 text-sm w-full mb-3 bg-white" data-placeholder="Nội dung bài học… Dán (Ctrl+V) để giữ định dạng và ảnh."></div>
 
-<!-- Attachments -->
 <div class="border rounded-xl p-4 mb-3 bg-slate-50">
 <div class="text-xs font-semibold text-slate-500 mb-2 uppercase"><i class="fas fa-paperclip mr-1"></i> Tệp đính kèm</div>
 <div class="grid md:grid-cols-2 gap-3 mb-2">
@@ -135,9 +133,9 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <input id="baiAttachName" placeholder="Tên hiển thị (vd: Giáo án Word)" class="border rounded-xl px-4 py-2.5 text-sm bg-white">
 </div>
 <label class="inline-flex items-center gap-2 text-sm text-slate-600 cursor-pointer hover:text-indigo-600">
-<input type="file" id="baiAttachFile" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" class="text-sm" onchange="onBaiFileSelect(this)">
+<input type="file" id="baiAttachFile" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx" class="text-sm" onchange="onBaiFileSelect(this)">
 </label>
-<p class="text-xs text-slate-400 mt-1">Ảnh nhỏ (<500KB) sẽ nhúng vào bài. File khác: nên tải lên Drive rồi dán link.</p>
+<p class="text-xs text-slate-400 mt-1">Ảnh nhỏ (<500KB) nhúng vào bài. File Word/PDF: tải lên Drive rồi dán link.</p>
 <div id="baiAttachPreview" class="mt-2 text-sm"></div>
 </div>
 
@@ -283,8 +281,8 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 </div>
 <script src="assets/script.js"></script>
 <script src="assets/admin.js"></script>
+<script src="assets/bai-rich.js"></script>
 <script>
-/* ===== Rich Text Editor helpers ===== */
 function rteCmd(cmd, val){
   document.getElementById('baiEditor').focus();
   document.execCommand(cmd, false, val || null);
@@ -301,7 +299,7 @@ function rteInsertImage(){
   inp.type = 'file'; inp.accept = 'image/*';
   inp.onchange = function(){
     var f = inp.files && inp.files[0]; if(!f) return;
-    if(f.size > 500*1024){ alert('Ảnh nên dưới 500KB để trang không nặng. Hãy nén hoặc dùng link Drive.'); return; }
+    if(f.size > 500*1024){ alert('Ảnh nên dưới 500KB. Hãy nén hoặc dùng link Drive.'); return; }
     var r = new FileReader();
     r.onload = function(){
       document.getElementById('baiEditor').focus();
@@ -324,25 +322,20 @@ function onBaiFileSelect(inp){
     r.readAsDataURL(f);
   } else {
     if(!document.getElementById('baiAttachName').value) document.getElementById('baiAttachName').value = f.name;
-    prev.innerHTML = '<span class="text-amber-600"><i class="fas fa-info-circle"></i> File "'+f.name+'" — hãy tải lên Google Drive rồi dán link vào ô phía trên (trình duyệt không lưu file lớn).</span>';
+    prev.innerHTML = '<span class="text-amber-600"><i class="fas fa-info-circle"></i> File "'+f.name+'" — tải lên Google Drive rồi dán link vào ô phía trên.</span>';
   }
 }
-/* Paste: keep HTML formatting */
 document.addEventListener('DOMContentLoaded', function(){
   var ed = document.getElementById('baiEditor');
   if(!ed) return;
   ed.addEventListener('paste', function(e){
-    // Prefer HTML from clipboard so Word/web formatting is kept
     var html = e.clipboardData && e.clipboardData.getData('text/html');
     if(html){
       e.preventDefault();
-      // Strip scripts/styles that may bloat
       var clean = html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/on\w+="[^"]*"/gi,'');
       document.execCommand('insertHTML', false, clean);
     }
-    // else: default paste (plain text or image blob handled by browser)
   });
-  // Placeholder behavior
   function syncPh(){
     if(!ed.textContent.trim()) ed.classList.add('empty');
     else ed.classList.remove('empty');
@@ -351,8 +344,5 @@ document.addEventListener('DOMContentLoaded', function(){
   syncPh();
 });
 </script>
-<style>
-#baiEditor.empty:before{content:attr(data-placeholder);color:#94a3b8;pointer-events:none}
-</style>
 </body>
 </html>
