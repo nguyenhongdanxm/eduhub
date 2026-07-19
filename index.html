@@ -11,126 +11,202 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800">
+
 <nav class="bg-white/95 backdrop-blur border-b border-slate-100 sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-<a href="index.html" class="flex items-center gap-3">
-<div class="w-11 h-11 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow">E</div>
-<div><div class="font-extrabold text-lg leading-tight text-slate-900">EduHub</div><div class="text-[11px] text-indigo-600 font-semibold">Giáo viên Tiểu học</div></div>
-</a>
-<div class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
-<a href="#chuyen-mon" class="nav-link hover:text-indigo-600">Chuyên môn</a>
-<a href="#van-ban" class="nav-link hover:text-indigo-600">Văn bản</a>
-<a href="#video" class="nav-link hover:text-indigo-600">Video</a>
-<a href="#ung-dung" class="nav-link hover:text-indigo-600">Ứng dụng</a>
-<a href="#bieu-mau" class="nav-link hover:text-indigo-600">Biểu mẫu</a>
-<a href="#de-thi" class="nav-link hover:text-indigo-600">Đề thi</a>
-</div>
-<div class="flex items-center gap-2">
-<div id="userInfo" class="hidden items-center gap-2">
-<img id="userAvatar" class="w-8 h-8 rounded-full border" alt="">
-<span id="userName" class="text-sm font-medium hidden sm:inline"></span>
-<button onclick="logout()" class="text-xs text-red-500">Thoát</button>
-</div>
-<button id="btnLogin" onclick="loginWithGoogle()" class="flex items-center gap-1.5 border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 rounded-lg text-sm font-medium">
-<i class="fab fa-google text-red-500 text-xs"></i> Đăng nhập
-</button>
-<a href="admin.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hidden sm:inline-flex items-center gap-1">
-<i class="fas fa-cog text-xs"></i> Admin
-</a>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+            <div class="w-11 h-11 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow">E</div>
+            <div>
+                <div class="font-extrabold text-lg leading-tight text-slate-900">EduHub</div>
+                <div class="text-[11px] text-indigo-600 font-semibold">Giáo viên Tiểu học</div>
+            </div>
+        </a>
+        <div class="hidden lg:flex items-center gap-5 text-sm font-semibold text-slate-600">
+            <a href="#chuyen-mon" class="nav-link hover:text-indigo-600">Chuyên môn</a>
+            <a href="#de-thi" class="nav-link hover:text-indigo-600">Đề thi</a>
+            <a href="#ke-hoach" class="nav-link hover:text-indigo-600">Kế hoạch</a>
+            <a href="#bieu-mau" class="nav-link hover:text-indigo-600">Biểu mẫu</a>
+            <a href="#van-ban" class="nav-link hover:text-indigo-600">Văn bản</a>
+            <a href="#video" class="nav-link hover:text-indigo-600">Video</a>
+            <a href="#ung-dung" class="nav-link hover:text-indigo-600">Ứng dụng</a>
+        </div>
+        <div class="flex items-center gap-2">
+            <div id="userInfo" class="hidden items-center gap-2">
+                <img id="userAvatar" class="w-8 h-8 rounded-full border" alt="">
+                <span id="userName" class="text-sm font-medium hidden sm:inline"></span>
+                <button onclick="logout()" class="text-xs text-red-500">Thoát</button>
+            </div>
+            <button id="btnLogin" onclick="loginWithGoogle()" class="flex items-center gap-1.5 border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 rounded-lg text-sm font-medium">
+                <i class="fab fa-google text-red-500 text-xs"></i> Đăng nhập
+            </button>
+            <a href="admin.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hidden sm:inline-flex items-center gap-1">
+                <i class="fas fa-cog text-xs"></i> Admin
+            </a>
+        </div>
+    </div>
 </nav>
+
 <header class="hero-bg text-white">
-<div class="max-w-7xl mx-auto px-6 py-14 md:py-20">
-<div class="max-w-2xl">
-<div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold mb-4">
-<i class="fas fa-graduation-cap"></i> Dành cho Giáo viên Tiểu học
-</div>
-<h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">Kho tài nguyên chuyên môn<br><span class="text-yellow-300">Kết nối tri thức</span></h1>
-<p class="text-white/90 text-base md:text-lg mb-6">Giáo án, văn bản quy định, video bài giảng, ứng dụng hay và biểu mẫu – tất cả trong một nơi.</p>
-<div class="flex flex-wrap gap-3">
-<a href="#chuyen-mon" class="bg-white text-indigo-700 font-bold px-5 py-2.5 rounded-xl shadow hover:scale-105 transition">Xem chuyên môn</a>
-<a href="#van-ban" class="border-2 border-white/60 font-semibold px-5 py-2.5 rounded-xl hover:bg-white/10 transition">Văn bản quy định</a>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-6 py-14 md:py-20">
+        <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold mb-4">
+                <i class="fas fa-graduation-cap"></i> Dành cho Giáo viên Tiểu học
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+                Kho tài nguyên chuyên môn<br>
+                <span class="text-yellow-300">Kết nối tri thức</span>
+            </h1>
+            <p class="text-white/90 text-base md:text-lg mb-6">
+                Giáo án · Đề thi · Kế hoạch · Biểu mẫu · Văn bản quy định – sắp xếp theo công việc hàng ngày của thầy cô.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#chuyen-mon" class="bg-white text-indigo-700 font-bold px-5 py-2.5 rounded-xl shadow hover:scale-105 transition">Xem chuyên môn</a>
+                <a href="#de-thi" class="border-2 border-white/60 font-semibold px-5 py-2.5 rounded-xl hover:bg-white/10 transition">Đề thi – Kiểm tra</a>
+            </div>
+        </div>
+    </div>
 </header>
+
+<!-- Menu nhanh theo nhóm -->
 <section class="bg-white border-b">
-<div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap gap-2 justify-center text-sm font-semibold">
-<a href="#chuyen-mon" class="px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 hover:bg-indigo-100">Chuyên môn</a>
-<a href="#van-ban" class="px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 hover:bg-amber-100">Văn bản + Hỏi đáp</a>
-<a href="#video" class="px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 hover:bg-rose-100">Video</a>
-<a href="#ung-dung" class="px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">Ứng dụng hay</a>
-<a href="#ke-hoach" class="px-3 py-1.5 rounded-full bg-sky-50 text-sky-700 hover:bg-sky-100">Kế hoạch</a>
-<a href="#bieu-mau" class="px-3 py-1.5 rounded-full bg-violet-50 text-violet-700 hover:bg-violet-100">Biểu mẫu</a>
-<a href="#de-thi" class="px-3 py-1.5 rounded-full bg-orange-50 text-orange-700 hover:bg-orange-100">Đề thi</a>
-<a href="#sang-kien" class="px-3 py-1.5 rounded-full bg-pink-50 text-pink-700 hover:bg-pink-100">Sáng kiến</a>
-</div>
+    <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex flex-wrap gap-2 justify-center text-sm font-semibold">
+            <span class="text-slate-400 text-xs self-center mr-1 hidden sm:inline">SOẠN GIẢNG</span>
+            <a href="#chuyen-mon" class="px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 hover:bg-indigo-100">1. Chuyên môn</a>
+            <a href="#de-thi" class="px-3 py-1.5 rounded-full bg-orange-50 text-orange-700 hover:bg-orange-100">2. Đề thi</a>
+            <a href="#ke-hoach" class="px-3 py-1.5 rounded-full bg-sky-50 text-sky-700 hover:bg-sky-100">3. Kế hoạch</a>
+            <span class="text-slate-300 mx-1 hidden sm:inline">|</span>
+            <span class="text-slate-400 text-xs self-center mr-1 hidden sm:inline">HỒ SƠ</span>
+            <a href="#bieu-mau" class="px-3 py-1.5 rounded-full bg-violet-50 text-violet-700 hover:bg-violet-100">4. Biểu mẫu</a>
+            <a href="#van-ban" class="px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 hover:bg-amber-100">5. Văn bản</a>
+            <span class="text-slate-300 mx-1 hidden sm:inline">|</span>
+            <span class="text-slate-400 text-xs self-center mr-1 hidden sm:inline">HỖ TRỢ</span>
+            <a href="#video" class="px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 hover:bg-rose-100">6. Video</a>
+            <a href="#ung-dung" class="px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100">7. Ứng dụng</a>
+            <a href="#sang-kien" class="px-3 py-1.5 rounded-full bg-pink-50 text-pink-700 hover:bg-pink-100">8. Sáng kiến</a>
+        </div>
+    </div>
 </section>
-<section id="chuyen-mon" class="py-14 bg-white"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Chuyên môn</h2>
-<p class="text-slate-500 mb-8">Giáo án, bài giảng, đề kiểm tra theo từng môn – chương trình Kết nối tri thức</p>
-<div id="subjectsList" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
-</div></section>
-<section id="van-ban" class="py-14 bg-slate-50"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Văn bản quy định</h2>
-<p class="text-slate-500 mb-8">Thông tư, công văn, hướng dẫn và hỏi đáp thường gặp</p>
-<div class="grid lg:grid-cols-2 gap-8">
-<div><h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-file-alt text-amber-500"></i> Văn bản mới</h3><div id="vanBanList" class="space-y-3"></div></div>
-<div><h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-comments text-indigo-500"></i> Hỏi đáp được quan tâm</h3><div id="faqList" class="space-y-3"></div></div>
-</div></div></section>
-<section id="video" class="py-14 bg-white"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Video YouTube</h2>
-<p class="text-slate-500 mb-8">Bài giảng, minh họa theo môn học</p>
-<div id="videosList" class="grid md:grid-cols-3 gap-6"></div>
-</div></section>
-<section id="ung-dung" class="py-14 bg-slate-50"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Ứng dụng hay</h2>
-<p class="text-slate-500 mb-8">Công cụ hỗ trợ soạn giáo án, tạo phiếu, tương tác lớp học</p>
-<div id="appsList" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
-</div></section>
-<section id="ke-hoach" class="py-14 bg-white"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Kế hoạch dạy học</h2>
-<p class="text-slate-500 mb-8">Kế hoạch năm, tháng, tuần – phân phối chương trình</p>
-<div id="keHoachList" class="grid md:grid-cols-3 gap-5"></div>
-</div></section>
-<section id="bieu-mau" class="py-14 bg-slate-50"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Biểu mẫu – Hồ sơ</h2>
-<p class="text-slate-500 mb-8">Sổ sách, nhận xét, báo cáo chuyên môn</p>
-<div id="bieuMauList" class="grid md:grid-cols-3 gap-5"></div>
-</div></section>
-<section id="de-thi" class="py-14 bg-white"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Đề thi – Kiểm tra</h2>
-<p class="text-slate-500 mb-8">Đề giữa kỳ, cuối kỳ theo lớp và môn</p>
-<div id="deThiList" class="grid md:grid-cols-3 gap-5"></div>
-</div></section>
-<section id="sang-kien" class="py-14 bg-slate-50"><div class="max-w-7xl mx-auto px-6">
-<h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Sáng kiến & Chia sẻ</h2>
-<p class="text-slate-500 mb-8">Sáng kiến kinh nghiệm, mẹo dạy học hay</p>
-<div id="sangKienList" class="grid md:grid-cols-3 gap-5"></div>
-</div></section>
+
+<!-- 1. CHUYÊN MÔN -->
+<section id="chuyen-mon" class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-end justify-between mb-2">
+            <div>
+                <div class="text-xs font-bold text-indigo-500 uppercase tracking-wide mb-1">Nhóm 1 · Soạn giảng hàng ngày</div>
+                <h2 class="text-2xl md:text-3xl font-extrabold section-title">Chuyên môn</h2>
+            </div>
+        </div>
+        <p class="text-slate-500 mb-8">Giáo án, slide, đề, phiếu bài tập theo từng môn – chương trình Kết nối tri thức. Bấm vào môn để xem tài nguyên.</p>
+        <div id="subjectsList" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+    </div>
+</section>
+
+<!-- 2. ĐỀ THI -->
+<section id="de-thi" class="py-14 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-orange-500 uppercase tracking-wide mb-1">Nhóm 1 · Soạn giảng hàng ngày</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Đề thi – Kiểm tra</h2>
+        <p class="text-slate-500 mb-8">Đề giữa kỳ, cuối kỳ theo lớp và môn – dễ tìm khi cần ra đề</p>
+        <div id="deThiList" class="grid md:grid-cols-3 gap-5"></div>
+    </div>
+</section>
+
+<!-- 3. KẾ HOẠCH -->
+<section id="ke-hoach" class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-sky-500 uppercase tracking-wide mb-1">Nhóm 1 · Soạn giảng hàng ngày</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Kế hoạch dạy học</h2>
+        <p class="text-slate-500 mb-8">Kế hoạch năm, tháng, tuần – phân phối chương trình</p>
+        <div id="keHoachList" class="grid md:grid-cols-3 gap-5"></div>
+    </div>
+</section>
+
+<!-- 4. BIỂU MẪU -->
+<section id="bieu-mau" class="py-14 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-violet-500 uppercase tracking-wide mb-1">Nhóm 2 · Hồ sơ & Sổ sách</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Biểu mẫu – Hồ sơ</h2>
+        <p class="text-slate-500 mb-8">Sổ đầu bài, nhận xét học sinh, báo cáo chuyên môn</p>
+        <div id="bieuMauList" class="grid md:grid-cols-3 gap-5"></div>
+    </div>
+</section>
+
+<!-- 5. VĂN BẢN -->
+<section id="van-ban" class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-amber-500 uppercase tracking-wide mb-1">Nhóm 2 · Hồ sơ & Quy định</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Văn bản quy định</h2>
+        <p class="text-slate-500 mb-8">Thông tư, công văn, hướng dẫn và hỏi đáp thường gặp</p>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-file-alt text-amber-500"></i> Văn bản mới</h3>
+                <div id="vanBanList" class="space-y-3"></div>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-comments text-indigo-500"></i> Hỏi đáp được quan tâm</h3>
+                <div id="faqList" class="space-y-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. VIDEO -->
+<section id="video" class="py-14 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-rose-500 uppercase tracking-wide mb-1">Nhóm 3 · Hỗ trợ dạy học</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Video YouTube</h2>
+        <p class="text-slate-500 mb-8">Bài giảng, minh họa theo môn học</p>
+        <div id="videosList" class="grid md:grid-cols-3 gap-6"></div>
+    </div>
+</section>
+
+<!-- 7. ỨNG DỤNG -->
+<section id="ung-dung" class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-emerald-500 uppercase tracking-wide mb-1">Nhóm 3 · Hỗ trợ dạy học</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Ứng dụng hay</h2>
+        <p class="text-slate-500 mb-8">Công cụ hỗ trợ soạn giáo án, tạo phiếu, tương tác lớp học</p>
+        <div id="appsList" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    </div>
+</section>
+
+<!-- 8. SÁNG KIẾN -->
+<section id="sang-kien" class="py-14 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-xs font-bold text-pink-500 uppercase tracking-wide mb-1">Nhóm 3 · Phát triển chuyên môn</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2 section-title">Sáng kiến & Chia sẻ</h2>
+        <p class="text-slate-500 mb-8">Sáng kiến kinh nghiệm, mẹo dạy học hay</p>
+        <div id="sangKienList" class="grid md:grid-cols-3 gap-5"></div>
+    </div>
+</section>
+
 <footer class="bg-slate-900 text-white py-10">
-<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-<div>
-<div class="flex items-center gap-2 mb-3">
-<div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold">E</div>
-<span class="font-extrabold">EduHub Giáo viên</span>
-</div>
-<p class="text-slate-400 text-sm">Nền tảng tài nguyên chuyên môn dành cho giáo viên tiểu học theo chương trình Kết nối tri thức.</p>
-</div>
-<div><h4 class="font-bold mb-3">Chuyên mục</h4>
-<ul class="space-y-1.5 text-sm text-slate-400">
-<li><a href="#chuyen-mon" class="hover:text-white">Chuyên môn</a></li>
-<li><a href="#van-ban" class="hover:text-white">Văn bản quy định</a></li>
-<li><a href="#video" class="hover:text-white">Video</a></li>
-<li><a href="#ung-dung" class="hover:text-white">Ứng dụng hay</a></li>
-</ul></div>
-<div><h4 class="font-bold mb-3">Liên hệ</h4>
-<p class="text-slate-400 text-sm">support@eduhub.vn</p>
-<p class="text-slate-500 text-xs mt-3">© 2026 EduHub · Giáo viên Tiểu học</p>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div>
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold">E</div>
+                <span class="font-extrabold">EduHub Giáo viên</span>
+            </div>
+            <p class="text-slate-400 text-sm">Nền tảng tài nguyên chuyên môn dành cho giáo viên tiểu học theo chương trình Kết nối tri thức.</p>
+        </div>
+        <div>
+            <h4 class="font-bold mb-3">Chuyên mục</h4>
+            <ul class="space-y-1.5 text-sm text-slate-400">
+                <li><a href="#chuyen-mon" class="hover:text-white">Chuyên môn</a></li>
+                <li><a href="#de-thi" class="hover:text-white">Đề thi – Kiểm tra</a></li>
+                <li><a href="#bieu-mau" class="hover:text-white">Biểu mẫu – Hồ sơ</a></li>
+                <li><a href="#van-ban" class="hover:text-white">Văn bản quy định</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-3">Liên hệ</h4>
+            <p class="text-slate-400 text-sm">support@eduhub.vn</p>
+            <p class="text-slate-500 text-xs mt-3">© 2026 EduHub · Giáo viên Tiểu học</p>
+        </div>
+    </div>
 </footer>
+
 <script src="assets/script.js"></script>
 </body>
 </html>
