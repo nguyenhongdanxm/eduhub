@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/capnachi/public_html/eduhub/
+    - export DEPLOYPATH=/home/capnachi/giaovientieuhoc.com/
     - /bin/cp -R * $DEPLOYPATH
