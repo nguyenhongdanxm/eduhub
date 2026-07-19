@@ -1,4 +1,4 @@
-// Admin full v2 + playlist NHAC TRI NHO TV lop 1
+// Admin full v2 + playlist NHAC TRI NHO TV lop 1 (29 videos)
 (function(){
   if(typeof KEYS==='undefined'){console.error('Load script.js first');return;}
   if(!KEYS.baiHoc)KEYS.baiHoc='eduhub_baihoc';
@@ -9,37 +9,57 @@
     ensure(KEYS.bieuMau,typeof defaultBieuMau!=='undefined'?defaultBieuMau:[]);
     ensure(KEYS.deThi,typeof defaultDeThi!=='undefined'?defaultDeThi:[]);
     ensure(KEYS.sangKien,typeof defaultSangKien!=='undefined'?defaultSangKien:[]);
-    // Playlist NHAC TRI NHO - Tieng Viet lop 1
+    // Playlist NHAC TRI NHO - Tieng Viet lop 1 (full 29)
     var playlistTV1=[
-      {id:1,title:'Bai doc: Chuot nha va chuot dong',youtubeId:'8_hhplvTTpM',duration:'2:33',subjectId:1,lop:1},
-      {id:2,title:'Bai doc: Kien va de men',youtubeId:'aa_9p3gRT8Y',duration:'2:18',subjectId:1,lop:1},
-      {id:3,title:'Bai doc: Bai hoc dau tien cua tho con',youtubeId:'X9GkCQ9tthY',duration:'2:08',subjectId:1,lop:1},
-      {id:4,title:'Bai doc: Qua va dan bo cau',youtubeId:'To8Bs2aM0B8',duration:'1:32',subjectId:1,lop:1},
-      {id:5,title:'Bai doc: Mat ong cua gau con',youtubeId:'jrnInyzIu9Y',duration:'2:19',subjectId:1,lop:1},
-      {id:6,title:'Bai doc: Su tich hoa cuc trang',youtubeId:'w6c8RoQ5mWY',duration:'2:27',subjectId:1,lop:1},
-      {id:7,title:'Bai doc: Ga nau va vit xam',youtubeId:'CviyCcrXUzs',duration:'2:04',subjectId:1,lop:1},
-      {id:8,title:'Bai doc: Hai nguoi ban va con gau',youtubeId:'xlTfKkNjIco',duration:'1:45',subjectId:1,lop:1},
-      {id:9,title:'Bai hat: Loi chao di truoc',youtubeId:'OEtFE6GzT74',duration:'3:24',subjectId:1,lop:1},
-      {id:10,title:'Nhac tri nho: Cau chuyen cua re',youtubeId:'Rk2uAYdme-w',duration:'3:14',subjectId:1,lop:1},
-      {id:11,title:'Nhac tri nho: Gio ra choi',youtubeId:'8IvTNBAJxXs',duration:'2:20',subjectId:1,lop:1},
-      {id:12,title:'Nhac tri nho: Cay bang va lop hoc',youtubeId:'f2fIi95F50U',duration:'2:26',subjectId:1,lop:1},
-      {id:13,title:'Tap doc: Toi va cac ban',youtubeId:'FqYBu8pdLLY',duration:'3:10',subjectId:1,lop:1},
-      {id:14,title:'Nhac tri nho: Ngoi nha',youtubeId:'lH40FbQATKs',duration:'2:58',subjectId:1,lop:1},
-      {id:15,title:'Ke chuyen: Bup be va de men',youtubeId:'hmzHGAvWa6k',duration:'1:21',subjectId:1,lop:1},
-      {id:16,title:'Bai doc: Neu khong may bi lac',youtubeId:'JGQqTryYUrc',duration:'1:17',subjectId:1,lop:1},
-      {id:17,title:'Bai doc: Khi me vang nha',youtubeId:'QabYIm8dVAg',duration:'1:19',subjectId:1,lop:1},
-      {id:18,title:'Tap doc: Mai am gia dinh',youtubeId:'DTEPKy0aki0',duration:'4:17',subjectId:1,lop:1}
+      {id:1,title:'B\u00e0i \u0111\u1ecdc: Chu\u1ed9t nh\u00e0 v\u00e0 chu\u1ed9t \u0111\u1ed3ng',youtubeId:'8_hhplvTTpM',duration:'2:33',subjectId:1,lop:1},
+      {id:2,title:'B\u00e0i \u0111\u1ecdc: Ki\u1ebfn v\u00e0 d\u1ebf m\u00e8n',youtubeId:'aa_9p3gRT8Y',duration:'2:18',subjectId:1,lop:1},
+      {id:3,title:'B\u00e0i \u0111\u1ecdc: B\u00e0i h\u1ecdc \u0111\u1ea7u ti\u00ean c\u1ee7a th\u1ecf con',youtubeId:'X9GkCQ9tthY',duration:'2:08',subjectId:1,lop:1},
+      {id:4,title:'B\u00e0i \u0111\u1ecdc: Qu\u1ea1 v\u00e0 \u0111\u00e0n b\u1ed3 c\u00e2u',youtubeId:'To8Bs2aM0B8',duration:'1:32',subjectId:1,lop:1},
+      {id:5,title:'B\u00e0i \u0111\u1ecdc: M\u1eadt ong c\u1ee7a g\u1ea5u con',youtubeId:'jrnInyzIu9Y',duration:'2:19',subjectId:1,lop:1},
+      {id:6,title:'B\u00e0i \u0111\u1ecdc: S\u1ef1 t\u00edch hoa c\u00fac tr\u1eafng',youtubeId:'w6c8RoQ5mWY',duration:'2:27',subjectId:1,lop:1},
+      {id:7,title:'B\u00e0i \u0111\u1ecdc: G\u00e0 n\u00e2u v\u00e0 v\u1ecbt x\u00e1m',youtubeId:'CviyCcrXUzs',duration:'2:04',subjectId:1,lop:1},
+      {id:8,title:'B\u00e0i \u0111\u1ecdc: Hai ng\u01b0\u1eddi b\u1ea1n v\u00e0 con g\u1ea5u',youtubeId:'xlTfKkNjIco',duration:'1:45',subjectId:1,lop:1},
+      {id:9,title:'B\u00e0i \u0111\u1ecdc: Ch\u00f3 s\u00f3i v\u00e0 c\u1eebu non',youtubeId:'L33M5DO4PbE',duration:'2:02',subjectId:1,lop:1},
+      {id:10,title:'B\u00e0i \u0111\u1ecdc: C\u00f4 ch\u1ee7 kh\u00f4ng bi\u1ebft qu\u00fd t\u00ecnh b\u1ea1n',youtubeId:'R1eY6UduXGA',duration:'2:17',subjectId:1,lop:1},
+      {id:11,title:'B\u00e0i \u0111\u1ecdc: Con qu\u1ea1 th\u00f4ng minh',youtubeId:'bFeKjfje7Tw',duration:'2:07',subjectId:1,lop:1},
+      {id:12,title:'B\u00e0i \u0111\u1ecdc: \u0110\u00e0n ki\u1ebfn con ngoan ngo\u00e3n',youtubeId:'N-9tUhU72io',duration:'2:09',subjectId:1,lop:1},
+      {id:13,title:'B\u00e0i \u0111\u1ecdc: C\u00e2u chuy\u1ec7n c\u1ee7a s\u00f3i',youtubeId:'dNVOHDxpYQc',duration:'2:18',subjectId:1,lop:1},
+      {id:14,title:'B\u00e0i \u0111\u1ecdc: Ch\u00fa b\u00e9 ch\u0103n c\u1eebu',youtubeId:'cloBQE7JUWg',duration:'1:48',subjectId:1,lop:1},
+      {id:15,title:'B\u00e0i \u0111\u1ecdc: Ki\u1ebfn v\u00e0 chim b\u1ed3 c\u00e2u',youtubeId:'ouHAaavN93M',duration:'3:32',subjectId:1,lop:1},
+      {id:16,title:'B\u00e0i \u0111\u1ecdc: \u0110\u00e8n giao th\u00f4ng',youtubeId:'yLM3Sb9Ise0',duration:'2:20',subjectId:1,lop:1},
+      {id:17,title:'B\u00e0i \u0111\u1ecdc: Hoa y\u00eau th\u01b0\u01a1ng',youtubeId:'E0YcCHvrQdQ',duration:'2:07',subjectId:1,lop:1},
+      {id:18,title:'B\u00e0i \u0111\u1ecdc: R\u1eeda tay tr\u01b0\u1edbc khi \u0103n',youtubeId:'H3eGOvyCs_0',duration:'1:23',subjectId:1,lop:1},
+      {id:19,title:'K\u1ec3 chuy\u1ec7n: B\u00fap b\u00ea v\u00e0 d\u1ebf m\u00e8n',youtubeId:'hmzHGAvWa6k',duration:'1:21',subjectId:1,lop:1},
+      {id:20,title:'B\u00e0i h\u00e1t: B\u1ea3y s\u1eafc c\u1ea7u v\u1ed3ng',youtubeId:'hoPpZ-ij-xA',duration:'2:12',subjectId:1,lop:1},
+      {id:21,title:'B\u00e0i \u0111\u1ecdc: N\u1ebfu kh\u00f4ng may b\u1ecb l\u1ea1c',youtubeId:'JGQqTryYUrc',duration:'1:17',subjectId:1,lop:1},
+      {id:22,title:'B\u00e0i \u0111\u1ecdc: Khi m\u1eb9 v\u1eafng nh\u00e0',youtubeId:'QabYIm8dVAg',duration:'1:19',subjectId:1,lop:1},
+      {id:23,title:'B\u00e0i h\u00e1t: L\u1eddi ch\u00e0o \u0111i tr\u01b0\u1edbc',youtubeId:'OEtFE6GzT74',duration:'3:24',subjectId:1,lop:1},
+      {id:24,title:'Nh\u1ea1c tr\u00ed nh\u1edb: C\u00e2u chuy\u1ec7n c\u1ee7a r\u1ec5',youtubeId:'Rk2uAYdme-w',duration:'3:14',subjectId:1,lop:1},
+      {id:25,title:'Nh\u1ea1c tr\u00ed nh\u1edb: Gi\u1edd ra ch\u01a1i',youtubeId:'8IvTNBAJxXs',duration:'2:20',subjectId:1,lop:1},
+      {id:26,title:'Nh\u1ea1c tr\u00ed nh\u1edb: C\u00e2y b\u00e0ng v\u00e0 l\u1edbp h\u1ecdc',youtubeId:'f2fIi95F50U',duration:'2:26',subjectId:1,lop:1},
+      {id:27,title:'T\u1eadp \u0111\u1ecdc: T\u00f4i v\u00e0 c\u00e1c b\u1ea1n',youtubeId:'FqYBu8pdLLY',duration:'3:10',subjectId:1,lop:1},
+      {id:28,title:'Nh\u1ea1c tr\u00ed nh\u1edb: Ng\u00f4i nh\u00e0',youtubeId:'lH40FbQATKs',duration:'2:58',subjectId:1,lop:1},
+      {id:29,title:'Nh\u1ea1c tr\u00ed nh\u1edb: B\u1ea1n c\u1ee7a gi\u00f3',youtubeId:'KwY1hxcWTQo',duration:'2:29',subjectId:1,lop:1}
     ];
-    // Force-merge playlist once (version key)
-    if(getData('eduhub_playlist_tv1_v2')!==2){
+    // Force-merge playlist (version 3 = full 29)
+    if(getData('eduhub_playlist_tv1_v2')!==3){
       var vids=getData(KEYS.videos)||[];
-      var ids={};vids.forEach(function(v){ids[v.youtubeId]=1;});
+      var byYt={};
+      vids.forEach(function(v){byYt[v.youtubeId]=v;});
       var next=vids.length?Math.max.apply(null,vids.map(function(v){return v.id;}))+1:1;
       playlistTV1.forEach(function(p){
-        if(!ids[p.youtubeId]){p.id=next++;vids.push(p);}
+        if(byYt[p.youtubeId]){
+          byYt[p.youtubeId].title=p.title;
+          byYt[p.youtubeId].duration=p.duration;
+          byYt[p.youtubeId].subjectId=1;
+          byYt[p.youtubeId].lop=1;
+        }else{
+          p.id=next++;
+          vids.push(p);
+        }
       });
       setData(KEYS.videos,vids);
-      setData('eduhub_playlist_tv1_v2',2);
+      setData('eduhub_playlist_tv1_v2',3);
     }
   }
 })();
@@ -55,8 +75,8 @@ function listRow(title,sub,type,id){
     +'<div class="min-w-0"><div class="font-medium text-sm">'+esc(title)+'</div>'
     +'<div class="text-xs text-gray-500 mt-0.5">'+esc(sub)+'</div></div>'
     +'<div class="flex gap-1 flex-shrink-0">'
-    +'<button onclick="editItem(\''+type+'\','+id+')" class="text-indigo-600 px-2 py-1 rounded hover:bg-indigo-50" title="Sua"><i class="fas fa-pen text-sm"></i></button>'
-    +'<button onclick="deleteItem(\''+type+'\','+id+')" class="text-red-500 px-2 py-1 rounded hover:bg-red-50" title="Xoa"><i class="fas fa-trash text-sm"></i></button>'
+    +'<button onclick="editItem(\''+type+'\','+id+')" class="text-indigo-600 px-2 py-1 rounded hover:bg-indigo-50" title="S\u1eeda"><i class="fas fa-pen text-sm"></i></button>'
+    +'<button onclick="deleteItem(\''+type+'\','+id+')" class="text-red-500 px-2 py-1 rounded hover:bg-red-50" title="X\u00f3a"><i class="fas fa-trash text-sm"></i></button>'
     +'</div></div>';
 }
 function esc(s){return String(s||'').replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"')}
@@ -72,16 +92,16 @@ function loadAdminData(){
   if(document.getElementById('statVideos'))document.getElementById('statVideos').textContent=videos.length;
   if(document.getElementById('statDocs'))document.getElementById('statDocs').textContent=resources.length;
   if(document.getElementById('statBai'))document.getElementById('statBai').textContent=baiHoc.length;
-  var opts='<option value="">-- Chon mon --</option>'+subjects.map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>';}).join('');
+  var opts='<option value="">-- Ch\u1ecdn m\u00f4n --</option>'+subjects.map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>';}).join('');
   ['resourceSubject','videoTopic','baiSubject','filterBaiSubject'].forEach(function(id){
     var el=document.getElementById(id);if(!el)return;
     var cur=el.value;
-    if(id==='filterBaiSubject')el.innerHTML='<option value="">Tat ca mon</option>'+subjects.map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>';}).join('');
+    if(id==='filterBaiSubject')el.innerHTML='<option value="">T\u1ea5t c\u1ea3 m\u00f4n</option>'+subjects.map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>';}).join('');
     else el.innerHTML=opts;
     if(cur)el.value=cur;
   });
   var topicsEl=document.getElementById('adminTopicsList');
-  if(topicsEl){var list=subjects.filter(function(s){return matchQ(q,s.name,s.desc);});topicsEl.innerHTML=list.map(function(s){return listRow(s.name,s.desc||'','subjects',s.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(topicsEl){var list=subjects.filter(function(s){return matchQ(q,s.name,s.desc);});topicsEl.innerHTML=list.map(function(s){return listRow(s.name,s.desc||'','subjects',s.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var baiFiltered=baiHoc.slice();
   var fSub=document.getElementById('filterBaiSubject')?document.getElementById('filterBaiSubject').value:'';
   var fLop=document.getElementById('filterBaiLop')?document.getElementById('filterBaiLop').value:'';
@@ -90,43 +110,43 @@ function loadAdminData(){
   baiFiltered=baiFiltered.filter(function(b){return matchQ(q,b.title,b.content);});
   baiFiltered.sort(function(a,b){return (a.lop-b.lop)||(a.stt-b.stt);});
   var baiEl=document.getElementById('adminBaiList');
-  if(baiEl)baiEl.innerHTML=baiFiltered.map(function(b){return listRow(b.title,getSubjectName(b.subjectId)+' · Lop '+b.lop+' · STT '+b.stt,'baiHoc',b.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';
+  if(baiEl)baiEl.innerHTML=baiFiltered.map(function(b){return listRow(b.title,getSubjectName(b.subjectId)+' \u00b7 L\u1edbp '+b.lop+' \u00b7 STT '+b.stt,'baiHoc',b.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';
   var resEl=document.getElementById('adminResourcesList');
-  if(resEl){var list=resources.filter(function(r){return matchQ(q,r.title,r.desc,r.content,r.type);});resEl.innerHTML=list.map(function(r){return listRow(r.title,getSubjectName(r.subjectId)+' · Lop '+(r.lop||'?')+' · '+r.type+(r.link?' · co link':''),'resources',r.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(resEl){var list=resources.filter(function(r){return matchQ(q,r.title,r.desc,r.content,r.type);});resEl.innerHTML=list.map(function(r){return listRow(r.title,getSubjectName(r.subjectId)+' \u00b7 L\u1edbp '+(r.lop||'?')+' \u00b7 '+r.type+(r.link?' \u00b7 c\u00f3 link':''),'resources',r.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var videosEl=document.getElementById('adminVideosList');
-  if(videosEl){var list=videos.filter(function(v){return matchQ(q,v.title,v.youtubeId);});videosEl.innerHTML=list.map(function(v){return listRow(v.title,'Lop '+(v.lop||'?')+' · '+v.youtubeId,'videos',v.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(videosEl){var list=videos.filter(function(v){return matchQ(q,v.title,v.youtubeId);});videosEl.innerHTML=list.map(function(v){return listRow(v.title,'L\u1edbp '+(v.lop||'?')+' \u00b7 '+v.youtubeId,'videos',v.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var vanBan=getData(KEYS.vanBan)||[];
   var vbEl=document.getElementById('adminVanBanList');
-  if(vbEl){var list=vanBan.filter(function(v){return matchQ(q,v.title,v.content,v.type);});vbEl.innerHTML=list.map(function(v){return listRow(v.title,v.type+' · '+v.year,'vanBan',v.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(vbEl){var list=vanBan.filter(function(v){return matchQ(q,v.title,v.content,v.type);});vbEl.innerHTML=list.map(function(v){return listRow(v.title,v.type+' \u00b7 '+v.year,'vanBan',v.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var faq=getData(KEYS.faq)||[];
   var faqEl=document.getElementById('adminFaqList');
-  if(faqEl){var list=faq.filter(function(f){return matchQ(q,f.q,f.a);});faqEl.innerHTML=list.map(function(f){return listRow(f.q,'','faq',f.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(faqEl){var list=faq.filter(function(f){return matchQ(q,f.q,f.a);});faqEl.innerHTML=list.map(function(f){return listRow(f.q,'','faq',f.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var apps=getData(KEYS.apps)||[];
   var appsEl=document.getElementById('adminAppsList');
-  if(appsEl){var list=apps.filter(function(a){return matchQ(q,a.name,a.desc,a.detail);});appsEl.innerHTML=list.map(function(a){return listRow(a.name,a.url||'','apps',a.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(appsEl){var list=apps.filter(function(a){return matchQ(q,a.name,a.desc,a.detail);});appsEl.innerHTML=list.map(function(a){return listRow(a.name,a.url||'','apps',a.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var kh=getData(KEYS.keHoach)||[];
   var khEl=document.getElementById('adminKeHoachList');
-  if(khEl){var list=kh.filter(function(x){return matchQ(q,x.title,x.content,x.type);});khEl.innerHTML=list.map(function(x){return listRow(x.title,x.type||'','keHoach',x.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(khEl){var list=kh.filter(function(x){return matchQ(q,x.title,x.content,x.type);});khEl.innerHTML=list.map(function(x){return listRow(x.title,x.type||'','keHoach',x.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var bm=getData(KEYS.bieuMau)||[];
   var bmEl=document.getElementById('adminBieuMauList');
-  if(bmEl){var list=bm.filter(function(x){return matchQ(q,x.title,x.content,x.type);});bmEl.innerHTML=list.map(function(x){return listRow(x.title,x.type||'','bieuMau',x.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(bmEl){var list=bm.filter(function(x){return matchQ(q,x.title,x.content,x.type);});bmEl.innerHTML=list.map(function(x){return listRow(x.title,x.type||'','bieuMau',x.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var dt=getData(KEYS.deThi)||[];
   var dtEl=document.getElementById('adminDeThiList');
-  if(dtEl){var list=dt.filter(function(x){return matchQ(q,x.title,x.content,x.mon);});dtEl.innerHTML=list.map(function(x){return listRow(x.title,(x.mon||'')+' · Lop '+(x.lop||''),'deThi',x.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(dtEl){var list=dt.filter(function(x){return matchQ(q,x.title,x.content,x.mon);});dtEl.innerHTML=list.map(function(x){return listRow(x.title,(x.mon||'')+' \u00b7 L\u1edbp '+(x.lop||''),'deThi',x.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   var sk=getData(KEYS.sangKien)||[];
   var skEl=document.getElementById('adminSangKienList');
-  if(skEl){var list=sk.filter(function(x){return matchQ(q,x.title,x.content,x.mon);});skEl.innerHTML=list.map(function(x){return listRow(x.title,x.mon||'','sangKien',x.id);}).join('')||'<p class="text-gray-500 text-sm">Khong co ket qua.</p>';}
+  if(skEl){var list=sk.filter(function(x){return matchQ(q,x.title,x.content,x.mon);});skEl.innerHTML=list.map(function(x){return listRow(x.title,x.mon||'','sangKien',x.id);}).join('')||'<p class="text-gray-500 text-sm">Kh\u00f4ng c\u00f3 k\u1ebft qu\u1ea3.</p>';}
   updateEditBadge();
 }
 
-function updateEditBadge(){var el=document.getElementById('editModeBadge');if(!el)return;if(_editState.id){el.classList.remove('hidden');el.querySelector('span').textContent='Dang sua #'+_editState.id+' ('+_editState.type+')';}else el.classList.add('hidden');}
+function updateEditBadge(){var el=document.getElementById('editModeBadge');if(!el)return;if(_editState.id){el.classList.remove('hidden');el.querySelector('span').textContent='\u0110ang s\u1eeda #'+_editState.id+' ('+_editState.type+')';}else el.classList.add('hidden');}
 function clearEdit(){_editState={type:null,id:null};updateEditBadge();}
 function setVal(id,v){var e=document.getElementById(id);if(e)e.value=v!=null?v:'';}
 
 function editItem(type,id){
   var keyMap={subjects:KEYS.subjects,resources:KEYS.resources,videos:KEYS.videos,vanBan:KEYS.vanBan,faq:KEYS.faq,apps:KEYS.apps,baiHoc:KEYS.baiHoc,keHoach:KEYS.keHoach,bieuMau:KEYS.bieuMau,deThi:KEYS.deThi,sangKien:KEYS.sangKien};
   var key=keyMap[type];if(!key)return;
-  var item=(getData(key)||[]).find(function(x){return x.id==id;});if(!item)return alert('Khong tim thay');
+  var item=(getData(key)||[]).find(function(x){return x.id==id;});if(!item)return alert('Kh\u00f4ng t\u00ecm th\u1ea5y');
   _editState={type:type,id:item.id};
   var tabMap={subjects:'mon',baiHoc:'bai',resources:'tn',videos:'video',vanBan:'vb',faq:'faq',apps:'app',keHoach:'kh',bieuMau:'bm',deThi:'dt',sangKien:'sk'};
   if(tabMap[type]&&typeof showTab==='function')showTab(tabMap[type]);
@@ -148,53 +168,53 @@ function upsert(key,obj,type){
   var list=getData(key)||[];
   if(_editState.type===type&&_editState.id){
     list=list.map(function(x){return x.id==_editState.id?Object.assign({},x,obj,{id:_editState.id}):x;});
-    clearEdit();setData(key,list);alert('Da cap nhat!');
+    clearEdit();setData(key,list);alert('\u0110\u00e3 c\u1eadp nh\u1eadt!');
   }else{
-    list.push(Object.assign({},obj,{id:nextId(list)}));setData(key,list);alert('Da them!');
+    list.push(Object.assign({},obj,{id:nextId(list)}));setData(key,list);alert('\u0110\u00e3 th\u00eam!');
   }
   loadAdminData();
 }
 
-function saveSubject(){var name=document.getElementById('topicName')&&document.getElementById('topicName').value.trim();var desc=(document.getElementById('topicDesc')&&document.getElementById('topicDesc').value.trim())||'';var icon=(document.getElementById('topicIcon')&&document.getElementById('topicIcon').value.trim())||'fa-folder';if(!name)return alert('Nhap ten mon');upsert(KEYS.subjects,{name:name,desc:desc,icon:icon,color:'indigo'},'subjects');}
-function saveBaiHoc(){var title=document.getElementById('baiTitle')&&document.getElementById('baiTitle').value.trim();var content=(document.getElementById('baiContent')&&document.getElementById('baiContent').value.trim())||'';var subjectId=Number(document.getElementById('baiSubject')&&document.getElementById('baiSubject').value);var lop=Number(document.getElementById('baiLop')&&document.getElementById('baiLop').value)||1;var stt=Number(document.getElementById('baiStt')&&document.getElementById('baiStt').value)||1;if(!title||!subjectId)return alert('Nhap ten bai va chon mon');upsert(KEYS.baiHoc,{subjectId:subjectId,lop:lop,stt:stt,title:title,content:content},'baiHoc');setVal('baiTitle','');setVal('baiContent','');}
-function saveResource(){var title=document.getElementById('resourceTitle')&&document.getElementById('resourceTitle').value.trim();var type=(document.getElementById('resourceType')&&document.getElementById('resourceType').value)||'Giao an';var format=(document.getElementById('resourceFormat')&&document.getElementById('resourceFormat').value)||'Word';var subjectId=document.getElementById('resourceSubject')&&document.getElementById('resourceSubject').value;var desc=(document.getElementById('resourceDesc')&&document.getElementById('resourceDesc').value.trim())||'';var content=(document.getElementById('resourceContent')&&document.getElementById('resourceContent').value.trim())||'';var link=(document.getElementById('resourceLink')&&document.getElementById('resourceLink').value.trim())||'';var lop=Number(document.getElementById('resourceLop')&&document.getElementById('resourceLop').value)||1;var fileInput=document.getElementById('resourceFile');var fileName=fileInput&&fileInput.files&&fileInput.files[0]?fileInput.files[0].name:'';if(!title||!subjectId)return alert('Nhap tieu de va chon mon');upsert(KEYS.resources,{title:title,type:type,format:format,subjectId:Number(subjectId),lop:lop,desc:desc,content:content,link:link,fileName:fileName},'resources');}
-function saveVideo(){var title=document.getElementById('videoTitle')&&document.getElementById('videoTitle').value.trim();var yt=document.getElementById('videoId')&&document.getElementById('videoId').value.trim();var duration=(document.getElementById('videoDuration')&&document.getElementById('videoDuration').value.trim())||'';var subjectId=document.getElementById('videoTopic')&&document.getElementById('videoTopic').value;var lop=Number(document.getElementById('videoLop')&&document.getElementById('videoLop').value)||1;if(!title||!yt)return alert('Nhap tieu de va YouTube');var m=yt.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);if(m)yt=m[1];upsert(KEYS.videos,{title:title,youtubeId:yt,duration:duration,subjectId:subjectId?Number(subjectId):null,lop:lop},'videos');}
-function saveVanBan(){var title=document.getElementById('vbTitle')&&document.getElementById('vbTitle').value.trim();var type=(document.getElementById('vbType')&&document.getElementById('vbType').value)||'Cong van';var year=(document.getElementById('vbYear')&&document.getElementById('vbYear').value)||'';var content=(document.getElementById('vbContent')&&document.getElementById('vbContent').value.trim())||'';var link=(document.getElementById('vbLink')&&document.getElementById('vbLink').value.trim())||'';if(!title)return alert('Nhap tieu de');upsert(KEYS.vanBan,{title:title,type:type,year:year,content:content,link:link},'vanBan');}
-function saveFaq(){var q=document.getElementById('faqQ')&&document.getElementById('faqQ').value.trim();var a=document.getElementById('faqA')&&document.getElementById('faqA').value.trim();if(!q||!a)return alert('Nhap du');upsert(KEYS.faq,{q:q,a:a},'faq');}
-function saveApp(){var name=document.getElementById('appName')&&document.getElementById('appName').value.trim();var desc=(document.getElementById('appDesc')&&document.getElementById('appDesc').value.trim())||'';var url=(document.getElementById('appUrl')&&document.getElementById('appUrl').value.trim())||'#';var icon=(document.getElementById('appIcon')&&document.getElementById('appIcon').value.trim())||'fa-link';var detail=(document.getElementById('appDetail')&&document.getElementById('appDetail').value.trim())||desc;if(!name)return alert('Nhap ten');upsert(KEYS.apps,{name:name,desc:desc,url:url,icon:icon,detail:detail},'apps');}
-function saveKeHoach(){var title=document.getElementById('khTitle')&&document.getElementById('khTitle').value.trim();var type=(document.getElementById('khType')&&document.getElementById('khType').value)||'Nam hoc';var content=(document.getElementById('khContent')&&document.getElementById('khContent').value.trim())||'';var link=(document.getElementById('khLink')&&document.getElementById('khLink').value.trim())||'';if(!title)return alert('Nhap tieu de');upsert(KEYS.keHoach,{title:title,type:type,content:content,link:link},'keHoach');}
-function saveBieuMau(){var title=document.getElementById('bmTitle')&&document.getElementById('bmTitle').value.trim();var type=(document.getElementById('bmType')&&document.getElementById('bmType').value)||'So sach';var content=(document.getElementById('bmContent')&&document.getElementById('bmContent').value.trim())||'';var link=(document.getElementById('bmLink')&&document.getElementById('bmLink').value.trim())||'';if(!title)return alert('Nhap tieu de');upsert(KEYS.bieuMau,{title:title,type:type,content:content,link:link},'bieuMau');}
-function saveDeThi(){var title=document.getElementById('dtTitle')&&document.getElementById('dtTitle').value.trim();var mon=(document.getElementById('dtMon')&&document.getElementById('dtMon').value.trim())||'';var lop=(document.getElementById('dtLop')&&document.getElementById('dtLop').value)||'1';var content=(document.getElementById('dtContent')&&document.getElementById('dtContent').value.trim())||'';var link=(document.getElementById('dtLink')&&document.getElementById('dtLink').value.trim())||'';if(!title)return alert('Nhap tieu de');upsert(KEYS.deThi,{title:title,mon:mon,lop:lop,content:content,link:link},'deThi');}
-function saveSangKien(){var title=document.getElementById('skTitle')&&document.getElementById('skTitle').value.trim();var mon=(document.getElementById('skMon')&&document.getElementById('skMon').value.trim())||'';var content=(document.getElementById('skContent')&&document.getElementById('skContent').value.trim())||'';var link=(document.getElementById('skLink')&&document.getElementById('skLink').value.trim())||'';if(!title)return alert('Nhap tieu de');upsert(KEYS.sangKien,{title:title,mon:mon,content:content,link:link},'sangKien');}
-function deleteItem(type,id){if(!confirm('Xoa muc nay?'))return;var keyMap={subjects:KEYS.subjects,resources:KEYS.resources,videos:KEYS.videos,vanBan:KEYS.vanBan,faq:KEYS.faq,apps:KEYS.apps,baiHoc:KEYS.baiHoc,keHoach:KEYS.keHoach,bieuMau:KEYS.bieuMau,deThi:KEYS.deThi,sangKien:KEYS.sangKien};var key=keyMap[type];if(!key)return;setData(key,(getData(key)||[]).filter(function(i){return i.id!=id;}));if(_editState.id==id)clearEdit();loadAdminData();if(document.getElementById('subjectsList'))renderHomepage();}
-function saveTopic(){saveSubject();}function saveDoc(){alert('Dung tab Tai nguyen');}function cancelEditTopic(){clearEdit();}function cancelEditVideo(){clearEdit();}function cancelEditDoc(){clearEdit();}function editTopic(){}function editVideo(){}function editDoc(){}function savePayment(){alert('Da luu!');}
+function saveSubject(){var name=document.getElementById('topicName')&&document.getElementById('topicName').value.trim();var desc=(document.getElementById('topicDesc')&&document.getElementById('topicDesc').value.trim())||'';var icon=(document.getElementById('topicIcon')&&document.getElementById('topicIcon').value.trim())||'fa-folder';if(!name)return alert('Nh\u1eadp t\u00ean m\u00f4n');upsert(KEYS.subjects,{name:name,desc:desc,icon:icon,color:'indigo'},'subjects');}
+function saveBaiHoc(){var title=document.getElementById('baiTitle')&&document.getElementById('baiTitle').value.trim();var content=(document.getElementById('baiContent')&&document.getElementById('baiContent').value.trim())||'';var subjectId=Number(document.getElementById('baiSubject')&&document.getElementById('baiSubject').value);var lop=Number(document.getElementById('baiLop')&&document.getElementById('baiLop').value)||1;var stt=Number(document.getElementById('baiStt')&&document.getElementById('baiStt').value)||1;if(!title||!subjectId)return alert('Nh\u1eadp t\u00ean b\u00e0i v\u00e0 ch\u1ecdn m\u00f4n');upsert(KEYS.baiHoc,{subjectId:subjectId,lop:lop,stt:stt,title:title,content:content},'baiHoc');setVal('baiTitle','');setVal('baiContent','');}
+function saveResource(){var title=document.getElementById('resourceTitle')&&document.getElementById('resourceTitle').value.trim();var type=(document.getElementById('resourceType')&&document.getElementById('resourceType').value)||'Gi\u00e1o \u00e1n';var format=(document.getElementById('resourceFormat')&&document.getElementById('resourceFormat').value)||'Word';var subjectId=document.getElementById('resourceSubject')&&document.getElementById('resourceSubject').value;var desc=(document.getElementById('resourceDesc')&&document.getElementById('resourceDesc').value.trim())||'';var content=(document.getElementById('resourceContent')&&document.getElementById('resourceContent').value.trim())||'';var link=(document.getElementById('resourceLink')&&document.getElementById('resourceLink').value.trim())||'';var lop=Number(document.getElementById('resourceLop')&&document.getElementById('resourceLop').value)||1;var fileInput=document.getElementById('resourceFile');var fileName=fileInput&&fileInput.files&&fileInput.files[0]?fileInput.files[0].name:'';if(!title||!subjectId)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1 v\u00e0 ch\u1ecdn m\u00f4n');upsert(KEYS.resources,{title:title,type:type,format:format,subjectId:Number(subjectId),lop:lop,desc:desc,content:content,link:link,fileName:fileName},'resources');}
+function saveVideo(){var title=document.getElementById('videoTitle')&&document.getElementById('videoTitle').value.trim();var yt=document.getElementById('videoId')&&document.getElementById('videoId').value.trim();var duration=(document.getElementById('videoDuration')&&document.getElementById('videoDuration').value.trim())||'';var subjectId=document.getElementById('videoTopic')&&document.getElementById('videoTopic').value;var lop=Number(document.getElementById('videoLop')&&document.getElementById('videoLop').value)||1;if(!title||!yt)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1 v\u00e0 YouTube');var m=yt.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);if(m)yt=m[1];upsert(KEYS.videos,{title:title,youtubeId:yt,duration:duration,subjectId:subjectId?Number(subjectId):null,lop:lop},'videos');}
+function saveVanBan(){var title=document.getElementById('vbTitle')&&document.getElementById('vbTitle').value.trim();var type=(document.getElementById('vbType')&&document.getElementById('vbType').value)||'C\u00f4ng v\u0103n';var year=(document.getElementById('vbYear')&&document.getElementById('vbYear').value)||'';var content=(document.getElementById('vbContent')&&document.getElementById('vbContent').value.trim())||'';var link=(document.getElementById('vbLink')&&document.getElementById('vbLink').value.trim())||'';if(!title)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1');upsert(KEYS.vanBan,{title:title,type:type,year:year,content:content,link:link},'vanBan');}
+function saveFaq(){var q=document.getElementById('faqQ')&&document.getElementById('faqQ').value.trim();var a=document.getElementById('faqA')&&document.getElementById('faqA').value.trim();if(!q||!a)return alert('Nh\u1eadp \u0111\u1ee7');upsert(KEYS.faq,{q:q,a:a},'faq');}
+function saveApp(){var name=document.getElementById('appName')&&document.getElementById('appName').value.trim();var desc=(document.getElementById('appDesc')&&document.getElementById('appDesc').value.trim())||'';var url=(document.getElementById('appUrl')&&document.getElementById('appUrl').value.trim())||'#';var icon=(document.getElementById('appIcon')&&document.getElementById('appIcon').value.trim())||'fa-link';var detail=(document.getElementById('appDetail')&&document.getElementById('appDetail').value.trim())||desc;if(!name)return alert('Nh\u1eadp t\u00ean');upsert(KEYS.apps,{name:name,desc:desc,url:url,icon:icon,detail:detail},'apps');}
+function saveKeHoach(){var title=document.getElementById('khTitle')&&document.getElementById('khTitle').value.trim();var type=(document.getElementById('khType')&&document.getElementById('khType').value)||'N\u0103m h\u1ecdc';var content=(document.getElementById('khContent')&&document.getElementById('khContent').value.trim())||'';var link=(document.getElementById('khLink')&&document.getElementById('khLink').value.trim())||'';if(!title)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1');upsert(KEYS.keHoach,{title:title,type:type,content:content,link:link},'keHoach');}
+function saveBieuMau(){var title=document.getElementById('bmTitle')&&document.getElementById('bmTitle').value.trim();var type=(document.getElementById('bmType')&&document.getElementById('bmType').value)||'S\u1ed5 s\u00e1ch';var content=(document.getElementById('bmContent')&&document.getElementById('bmContent').value.trim())||'';var link=(document.getElementById('bmLink')&&document.getElementById('bmLink').value.trim())||'';if(!title)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1');upsert(KEYS.bieuMau,{title:title,type:type,content:content,link:link},'bieuMau');}
+function saveDeThi(){var title=document.getElementById('dtTitle')&&document.getElementById('dtTitle').value.trim();var mon=(document.getElementById('dtMon')&&document.getElementById('dtMon').value.trim())||'';var lop=(document.getElementById('dtLop')&&document.getElementById('dtLop').value)||'1';var content=(document.getElementById('dtContent')&&document.getElementById('dtContent').value.trim())||'';var link=(document.getElementById('dtLink')&&document.getElementById('dtLink').value.trim())||'';if(!title)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1');upsert(KEYS.deThi,{title:title,mon:mon,lop:lop,content:content,link:link},'deThi');}
+function saveSangKien(){var title=document.getElementById('skTitle')&&document.getElementById('skTitle').value.trim();var mon=(document.getElementById('skMon')&&document.getElementById('skMon').value.trim())||'';var content=(document.getElementById('skContent')&&document.getElementById('skContent').value.trim())||'';var link=(document.getElementById('skLink')&&document.getElementById('skLink').value.trim())||'';if(!title)return alert('Nh\u1eadp ti\u00eau \u0111\u1ec1');upsert(KEYS.sangKien,{title:title,mon:mon,content:content,link:link},'sangKien');}
+function deleteItem(type,id){if(!confirm('X\u00f3a m\u1ee5c n\u00e0y?'))return;var keyMap={subjects:KEYS.subjects,resources:KEYS.resources,videos:KEYS.videos,vanBan:KEYS.vanBan,faq:KEYS.faq,apps:KEYS.apps,baiHoc:KEYS.baiHoc,keHoach:KEYS.keHoach,bieuMau:KEYS.bieuMau,deThi:KEYS.deThi,sangKien:KEYS.sangKien};var key=keyMap[type];if(!key)return;setData(key,(getData(key)||[]).filter(function(i){return i.id!=id;}));if(_editState.id==id)clearEdit();loadAdminData();if(document.getElementById('subjectsList'))renderHomepage();}
+function saveTopic(){saveSubject();}function saveDoc(){alert('D\u00f9ng tab T\u00e0i nguy\u00ean');}function cancelEditTopic(){clearEdit();}function cancelEditVideo(){clearEdit();}function cancelEditDoc(){clearEdit();}function editTopic(){}function editVideo(){}function editDoc(){}function savePayment(){alert('\u0110\u00e3 l\u01b0u!');}
 
 function siteSearch(q){
   q=(q||'').trim();var box=document.getElementById('searchResults');if(!box)return;
   if(!q){box.classList.add('hidden');box.innerHTML='';return;}
   initData();var results=[];
-  (getData(KEYS.subjects)||[]).forEach(function(s){if(matchQ(q,s.name,s.desc))results.push({type:'Mon hoc',title:s.name,href:'mon.html?id='+s.id,sub:s.desc});});
-  (getData(KEYS.baiHoc)||[]).forEach(function(b){if(matchQ(q,b.title,b.content))results.push({type:'Bai hoc L'+b.lop,title:b.title,href:'mon.html?id='+b.subjectId,sub:(b.content||'').slice(0,80)});});
-  (getData(KEYS.resources)||[]).forEach(function(r){if(matchQ(q,r.title,r.desc,r.content))results.push({type:r.type||'Tai nguyen',title:r.title,href:'mon.html?id='+r.subjectId,sub:r.desc});});
-  (getData(KEYS.videos)||[]).forEach(function(v){if(matchQ(q,v.title))results.push({type:'Video',title:v.title,href:'video.html',sub:'Lop '+(v.lop||'')});});
-  (getData(KEYS.vanBan)||[]).forEach(function(v){if(matchQ(q,v.title,v.content))results.push({type:'Van ban',title:v.title,href:'#van-ban',sub:v.type});});
-  (getData(KEYS.faq)||[]).forEach(function(f){if(matchQ(q,f.q,f.a))results.push({type:'Hoi dap',title:f.q,href:'#van-ban',sub:(f.a||'').slice(0,60)});});
-  (getData(KEYS.deThi)||[]).forEach(function(d){if(matchQ(q,d.title,d.content,d.mon))results.push({type:'De thi',title:d.title,href:'#de-thi',sub:(d.mon||'')+' Lop '+(d.lop||'')});});
-  (getData(KEYS.keHoach)||[]).forEach(function(k){if(matchQ(q,k.title,k.content))results.push({type:'Ke hoach',title:k.title,href:'#ke-hoach',sub:k.type});});
-  (getData(KEYS.bieuMau)||[]).forEach(function(k){if(matchQ(q,k.title,k.content))results.push({type:'Bieu mau',title:k.title,href:'#bieu-mau',sub:k.type});});
-  (getData(KEYS.apps)||[]).forEach(function(a){if(matchQ(q,a.name,a.desc))results.push({type:'Ung dung',title:a.name,href:'#ung-dung',sub:a.desc});});
-  (getData(KEYS.sangKien)||[]).forEach(function(s){if(matchQ(q,s.title,s.content))results.push({type:'Sang kien',title:s.title,href:'#sang-kien',sub:s.mon});});
+  (getData(KEYS.subjects)||[]).forEach(function(s){if(matchQ(q,s.name,s.desc))results.push({type:'M\u00f4n h\u1ecdc',title:s.name,href:'mon.html?id='+s.id,sub:s.desc});});
+  (getData(KEYS.baiHoc)||[]).forEach(function(b){if(matchQ(q,b.title,b.content))results.push({type:'B\u00e0i h\u1ecdc L'+b.lop,title:b.title,href:'mon.html?id='+b.subjectId,sub:(b.content||'').slice(0,80)});});
+  (getData(KEYS.resources)||[]).forEach(function(r){if(matchQ(q,r.title,r.desc,r.content))results.push({type:r.type||'T\u00e0i nguy\u00ean',title:r.title,href:'mon.html?id='+r.subjectId,sub:r.desc});});
+  (getData(KEYS.videos)||[]).forEach(function(v){if(matchQ(q,v.title))results.push({type:'Video',title:v.title,href:'video.html',sub:'L\u1edbp '+(v.lop||'')});});
+  (getData(KEYS.vanBan)||[]).forEach(function(v){if(matchQ(q,v.title,v.content))results.push({type:'V\u0103n b\u1ea3n',title:v.title,href:'#van-ban',sub:v.type});});
+  (getData(KEYS.faq)||[]).forEach(function(f){if(matchQ(q,f.q,f.a))results.push({type:'H\u1ecfi \u0111\u00e1p',title:f.q,href:'#van-ban',sub:(f.a||'').slice(0,60)});});
+  (getData(KEYS.deThi)||[]).forEach(function(d){if(matchQ(q,d.title,d.content,d.mon))results.push({type:'\u0110\u1ec1 thi',title:d.title,href:'#de-thi',sub:(d.mon||'')+' L\u1edbp '+(d.lop||'')});});
+  (getData(KEYS.keHoach)||[]).forEach(function(k){if(matchQ(q,k.title,k.content))results.push({type:'K\u1ebf ho\u1ea1ch',title:k.title,href:'#ke-hoach',sub:k.type});});
+  (getData(KEYS.bieuMau)||[]).forEach(function(k){if(matchQ(q,k.title,k.content))results.push({type:'Bi\u1ec3u m\u1eabu',title:k.title,href:'#bieu-mau',sub:k.type});});
+  (getData(KEYS.apps)||[]).forEach(function(a){if(matchQ(q,a.name,a.desc))results.push({type:'\u1ee8ng d\u1ee5ng',title:a.name,href:'#ung-dung',sub:a.desc});});
+  (getData(KEYS.sangKien)||[]).forEach(function(s){if(matchQ(q,s.title,s.content))results.push({type:'S\u00e1ng ki\u1ebfn',title:s.title,href:'#sang-kien',sub:s.mon});});
   box.classList.remove('hidden');
-  if(!results.length){box.innerHTML='<div class="p-4 text-sm text-slate-500">Khong tim thay</div>';return;}
-  box.innerHTML='<div class="p-2 text-xs text-slate-400 font-semibold">'+results.length+' ket qua</div>'+results.slice(0,30).map(function(r){return '<a href="'+r.href+'" class="block px-4 py-3 hover:bg-indigo-50 border-t border-slate-100"><div class="text-[10px] font-bold text-indigo-500 uppercase">'+esc(r.type)+'</div><div class="font-semibold text-sm">'+esc(r.title)+'</div><div class="text-xs text-slate-500 truncate">'+esc(r.sub||'')+'</div></a>';}).join('');
+  if(!results.length){box.innerHTML='<div class="p-4 text-sm text-slate-500">Kh\u00f4ng t\u00ecm th\u1ea5y</div>';return;}
+  box.innerHTML='<div class="p-2 text-xs text-slate-400 font-semibold">'+results.length+' k\u1ebft qu\u1ea3</div>'+results.slice(0,30).map(function(r){return '<a href="'+r.href+'" class="block px-4 py-3 hover:bg-indigo-50 border-t border-slate-100"><div class="text-[10px] font-bold text-indigo-500 uppercase">'+esc(r.type)+'</div><div class="font-semibold text-sm">'+esc(r.title)+'</div><div class="text-xs text-slate-500 truncate">'+esc(r.sub||'')+'</div></a>';}).join('');
 }
 
 function filterLessons(q){
   if(typeof openGrade!=='function'||!window._monState||!_monState.grade)return;
   var list=(getData(KEYS.baiHoc)||[]).filter(function(b){return b.subjectId==_monState.subjectId&&b.lop==_monState.grade;}).filter(function(b){return matchQ(q,b.title,b.content);}).sort(function(a,b){return a.stt-b.stt;});
   var el=document.getElementById('lessonsList');if(!el)return;
-  if(!list.length){el.innerHTML='<div class="bg-white border rounded-xl p-6 text-slate-400">Khong co bai khop.</div>';return;}
-  el.innerHTML=list.map(function(b){return '<a href="javascript:void(0)" onclick="openBai('+b.id+')" class="bg-white border rounded-xl p-4 flex items-center gap-3 card-hover block hover:border-indigo-300"><div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm font-bold flex-shrink-0">'+(b.stt===0?'★':b.stt)+'</div><div class="flex-1 min-w-0"><div class="font-semibold text-sm">'+b.title+'</div><div class="text-xs text-slate-400 truncate">'+(b.content||'').slice(0,80)+'…</div></div><i class="fas fa-chevron-right text-slate-300"></i></a>';}).join('');
+  if(!list.length){el.innerHTML='<div class="bg-white border rounded-xl p-6 text-slate-400">Kh\u00f4ng c\u00f3 b\u00e0i kh\u1edbp.</div>';return;}
+  el.innerHTML=list.map(function(b){return '<a href="javascript:void(0)" onclick="openBai('+b.id+')" class="bg-white border rounded-xl p-4 flex items-center gap-3 card-hover block hover:border-indigo-300"><div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm font-bold flex-shrink-0">'+(b.stt===0?'\u2605':b.stt)+'</div><div class="flex-1 min-w-0"><div class="font-semibold text-sm">'+b.title+'</div><div class="text-xs text-slate-400 truncate">'+(b.content||'').slice(0,80)+'\u2026</div></div><i class="fas fa-chevron-right text-slate-300"></i></a>';}).join('');
 }
 
 document.addEventListener('DOMContentLoaded',function(){
