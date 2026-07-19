@@ -1,4 +1,4 @@
-// Admin + playlist TV lop 1 (29) + lop 2 (40) + lop 3 (30)
+// Admin + playlist TV lop 1-4
 (function(){
   if(typeof KEYS==='undefined'){console.error('Load script.js first');return;}
   if(!KEYS.baiHoc)KEYS.baiHoc='eduhub_baihoc';
@@ -131,9 +131,34 @@
       {title:'Nhac tri nho: Vao bep that vui',youtubeId:'RC3488Z91GM',duration:'2:59',subjectId:1,lop:3},
       {title:'Nhac tri nho: Em yeu mua he',youtubeId:'xZuZ0zC_WL4',duration:'4:01',subjectId:1,lop:3}
     ];
+    var playlistTV4=[
+      {title:'Bai doc: Vet phan tren mat ban',youtubeId:'YJ2iVNR3YD4',duration:'1:57',subjectId:1,lop:4},
+      {title:'Bai hat: Bon mua mo uoc',youtubeId:'-7uMZaVki7g',duration:'3:54',subjectId:1,lop:4},
+      {title:'Bai hat: Ve mau',youtubeId:'fNKJqGo0fXU',duration:'5:19',subjectId:1,lop:4},
+      {title:'Bai doc: Con chim chien chien',youtubeId:'YnPeqLQ8RZ8',duration:'4:15',subjectId:1,lop:4},
+      {title:'Bai doc: Truoc ngay xa que',youtubeId:'QVg44mle5cc',duration:'3:18',subjectId:1,lop:4},
+      {title:'Bai doc: Nha phat minh 6 tuoi',youtubeId:'8rdTenfYtbM',duration:'2:36',subjectId:1,lop:4},
+      {title:'Bai doc: Tap lam van',youtubeId:'dqzAOBYI8Y4',duration:'3:07',subjectId:1,lop:4},
+      {title:'Bai doc: Tieng noi cua co cay',youtubeId:'Kfab_EDHrqE',duration:'2:48',subjectId:1,lop:4},
+      {title:'Bai hat: Bau troi trong qua trung',youtubeId:'LlC2MzJZdCU',duration:'2:58',subjectId:1,lop:4},
+      {title:'Bai hat: Gat chu tren non',youtubeId:'igxXfb0zTqQ',duration:'4:44',subjectId:1,lop:4},
+      {title:'Bai doc: Thi nhac',youtubeId:'8zpWkzeG-dA',duration:'2:52',subjectId:1,lop:4},
+      {title:'Bai hat: Tuoi ngua',youtubeId:'MH1kdhpYjK8',duration:'4:16',subjectId:1,lop:4},
+      {title:'Bai hat: Dieu ky dieu',youtubeId:'wEp-wfStVIk',duration:'2:25',subjectId:1,lop:4},
+      {title:'Bai hat: Di hoi chua Huong',youtubeId:'f16Z3_Mvgko',duration:'4:45',subjectId:1,lop:4},
+      {title:'Bai hat: Buoc mua xuan',youtubeId:'bYOh9bNQ8p8',duration:'3:37',subjectId:1,lop:4},
+      {title:'Bai hat: Ngua bien phong',youtubeId:'WcPR3SmoTp4',duration:'3:36',subjectId:1,lop:4},
+      {title:'Nhac tri nho: Trong loi me hat',youtubeId:'Fvg1-lEmWRo',duration:'3:19',subjectId:1,lop:4},
+      {title:'Nhac tri nho: Cam xuc Truong Sa',youtubeId:'qA7XnAaPmFM',duration:'5:24',subjectId:1,lop:4},
+      {title:'Nhac tri nho: Sang thang nam',youtubeId:'y2HQMA0dqT8',duration:'2:35',subjectId:1,lop:4},
+      {title:'Tap doc: Song de yeu thuong (P1)',youtubeId:'CAvbm8qDt4Q',duration:'3:09',subjectId:1,lop:4},
+      {title:'Nhac tri nho: Qua ngot cuoi mua',youtubeId:'WAGSrFW2nGw',duration:'3:06',subjectId:1,lop:4},
+      {title:'Nhac tri nho: Neu chung minh co phep la',youtubeId:'aRszb3aUOtU',duration:'4:13',subjectId:1,lop:4}
+    ];
     mergePlaylist(playlistTV1,'eduhub_playlist_tv1_v2',3);
     mergePlaylist(playlistTV2,'eduhub_playlist_tv2_v1',1);
     mergePlaylist(playlistTV3,'eduhub_playlist_tv3_v1',1);
+    mergePlaylist(playlistTV4,'eduhub_playlist_tv4_v1',1);
   }
 })();
 
