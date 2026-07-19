@@ -1,4 +1,4 @@
-// EduHub - Script Tiểu học (Kết nối tri thức)
+// EduHub Giao vien Tieu hoc - Full Script
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -13,106 +13,274 @@ try {
         firebase.initializeApp(firebaseConfig);
         auth = firebase.auth();
     }
-} catch (e) { console.log("Firebase demo mode"); }
+} catch (e) { console.log("Firebase demo"); }
 
 const KEYS = {
-    topics: 'eduhub_topics',
+    subjects: 'eduhub_subjects',
     videos: 'eduhub_videos',
-    docs: 'eduhub_docs',
+    vanBan: 'eduhub_vanban',
+    faq: 'eduhub_faq',
+    apps: 'eduhub_apps',
+    keHoach: 'eduhub_kehoach',
+    bieuMau: 'eduhub_bieumau',
+    deThi: 'eduhub_dethi',
+    sangKien: 'eduhub_sangkien',
     users: 'eduhub_users',
-    payment: 'eduhub_payment',
-    currentUser: 'eduhub_currentUser'
+    currentUser: 'eduhub_currentUser',
+    payment: 'eduhub_payment'
 };
 
-const defaultTopics = [
-    { id: 1, name: 'Tiếng Việt lớp 1', desc: 'Học chữ, đọc – viết theo Kết nối tri thức', icon: 'fa-book-open' },
-    { id: 2, name: 'Tiếng Việt lớp 2', desc: 'Đọc hiểu, luyện từ & câu', icon: 'fa-book' },
-    { id: 3, name: 'Tiếng Việt lớp 3', desc: 'Tập làm văn, kể chuyện', icon: 'fa-pen-fancy' },
-    { id: 4, name: 'Tiếng Việt lớp 4', desc: 'Văn bản, kỹ năng viết', icon: 'fa-feather' },
-    { id: 5, name: 'Tiếng Việt lớp 5', desc: 'Đọc hiểu nâng cao, làm văn', icon: 'fa-graduation-cap' },
-    { id: 6, name: 'Toán', desc: 'Số học, hình học lớp 1-5', icon: 'fa-calculator' },
-    { id: 7, name: 'Tự nhiên và Xã hội', desc: 'Khám phá thế giới quanh ta', icon: 'fa-leaf' },
-    { id: 8, name: 'Đạo đức', desc: 'Kỹ năng sống, phẩm chất', icon: 'fa-heart' }
+const DATA_VERSION = 5;
+
+const defaultSubjects = [
+    { id: 1, name: 'Tieng Viet', desc: 'Giao an, bai giang, de KT', icon: 'fa-book-open', color: 'rose' },
+    { id: 2, name: 'Toan', desc: 'Giao an, phieu bai tap', icon: 'fa-calculator', color: 'sky' },
+    { id: 3, name: 'Tu nhien va Xa hoi', desc: 'Kham pha the gioi quanh ta', icon: 'fa-leaf', color: 'emerald' },
+    { id: 4, name: 'Dao duc', desc: 'Pham chat, ky nang song', icon: 'fa-heart', color: 'amber' },
+    { id: 5, name: 'Tieng Anh', desc: 'Ngoai ngu tieu hoc', icon: 'fa-language', color: 'violet' },
+    { id: 6, name: 'Tin hoc', desc: 'Cong nghe & may tinh', icon: 'fa-laptop', color: 'cyan' },
+    { id: 7, name: 'My thuat', desc: 'Ve, thu cong, sang tao', icon: 'fa-palette', color: 'pink' },
+    { id: 8, name: 'Am nhac', desc: 'Hat, nhac cu, nhip dieu', icon: 'fa-music', color: 'indigo' },
+    { id: 9, name: 'GD The chat', desc: 'Van dong, suc khoe', icon: 'fa-running', color: 'orange' },
+    { id: 10, name: 'HD Trai nghiem', desc: 'STEM, hoat dong ngoai khoa', icon: 'fa-hands-helping', color: 'teal' }
 ];
 
 const defaultVideos = [
-    { id: 1, title: 'Bài đọc: Chuột nhà và chuột đồng - TV lớp 1', youtubeId: '8_hhplvTTpM', duration: '2:33', topicId: 1 },
-    { id: 2, title: 'Bài đọc: Kiến và dế mèn - TV lớp 1', youtubeId: 'aa_9p3gRT8Y', duration: '2:18', topicId: 1 },
-    { id: 3, title: 'Bài đọc: Bài học đầu tiên của thỏ con - TV lớp 1', youtubeId: 'X9GkCQ9tthY', duration: '2:08', topicId: 1 },
-    { id: 4, title: 'Bài đọc: Quạ và đàn bồ câu - TV lớp 1', youtubeId: 'To8Bs2aM0B8', duration: '1:32', topicId: 1 },
-    { id: 5, title: 'Bài hát: Lời chào đi trước - TV lớp 1', youtubeId: 'OEtFE6GzT74', duration: '3:24', topicId: 1 },
-    { id: 6, title: 'Nhạc trí nhớ: Câu chuyện của rễ - TV lớp 1', youtubeId: 'Rk2uAYdme-w', duration: '3:14', topicId: 1 },
-    { id: 7, title: 'Nhạc trí nhớ: Giờ ra chơi - TV lớp 1', youtubeId: '8IvTNBAJxXs', duration: '2:20', topicId: 1 },
-    { id: 8, title: 'Nhạc trí nhớ: Cây bàng và lớp học - TV lớp 1', youtubeId: 'f2fIi95F50U', duration: '2:26', topicId: 1 }
+    { id: 1, title: 'Bai doc: Chuot nha va chuot dong - TV lop 1', youtubeId: '8_hhplvTTpM', duration: '2:33', subjectId: 1 },
+    { id: 2, title: 'Bai doc: Kien va de men - TV lop 1', youtubeId: 'aa_9p3gRT8Y', duration: '2:18', subjectId: 1 },
+    { id: 3, title: 'Bai hat: Loi chao di truoc - TV lop 1', youtubeId: 'OEtFE6GzT74', duration: '3:24', subjectId: 1 },
+    { id: 4, title: 'Nhac tri nho: Cay bang va lop hoc', youtubeId: 'f2fIi95F50U', duration: '2:26', subjectId: 1 },
+    { id: 5, title: 'Bai doc: Bai hoc dau tien cua tho con', youtubeId: 'X9GkCQ9tthY', duration: '2:08', subjectId: 1 },
+    { id: 6, title: 'Nhac tri nho: Gio ra choi', youtubeId: '8IvTNBAJxXs', duration: '2:20', subjectId: 1 }
 ];
 
-const defaultDocs = [
-    { id: 1, title: 'Bài tập Tiếng Việt lớp 1 - Kết nối tri thức', pages: '28 trang', code: 'TVLOP1', url: '', topicId: 1 },
-    { id: 2, title: 'Bài tập Tiếng Việt lớp 2', pages: '32 trang', code: 'TVLOP2', url: '', topicId: 2 },
-    { id: 3, title: 'Bài tập Tiếng Việt lớp 3', pages: '30 trang', code: 'TVLOP3', url: '', topicId: 3 }
+const defaultVanBan = [
+    { id: 1, title: 'Cong van 3898/BGDDT-GDTH huong dan nhiem vu GD tieu hoc 2024-2025', type: 'Cong van', year: '2024' },
+    { id: 2, title: 'Thong tu 27/2020/TT-BGDDT quy dinh danh gia hoc sinh tieu hoc', type: 'Thong tu', year: '2020' },
+    { id: 3, title: 'Thong tu 05/2025/TT-BGDDT ve dinh muc tiet day giao vien', type: 'Thong tu', year: '2025' },
+    { id: 4, title: 'Cong van 2345/BGDDT-GDTH huong dan xay dung ke hoach bai day', type: 'Cong van', year: '2021' },
+    { id: 5, title: 'Thong tu 32/2018/TT-BGDDT Chuong trinh GDPT 2018', type: 'Thong tu', year: '2018' }
+];
+
+const defaultFaq = [
+    { id: 1, q: 'Dinh muc tiet day cua giao vien tieu hoc hien nay la bao nhieu?', a: 'Theo Thong tu 05/2025/TT-BGDDT: Giao vien truong tieu hoc la 23 tiet/tuan. Giao vien truong PTDTBT tieu hoc va truong danh cho nguoi khuyet tat la 21 tiet/tuan.' },
+    { id: 2, q: 'Giao an co bat buoc theo mau co dinh khong?', a: 'Khong. Theo huong dan cua Bo, giao vien chu dong, linh hoat xay dung ke hoach bai day phu hop voi hoc sinh va dieu kien thuc te, tranh khuon mau hinh thuc.' },
+    { id: 3, q: 'Danh gia hoc sinh tieu hoc theo quy dinh nao?', a: 'Thuc hien theo Thong tu 27/2020/TT-BGDDT. Danh gia bang nhan xet, ket hop danh gia thuong xuyen va dinh ky, theo pham chat va nang luc.' },
+    { id: 4, q: 'Long ghep giao duc quoc phong an ninh o tieu hoc nhu the nao?', a: 'Thuc hien theo Thong tu 08/2024/TT-BGDDT. Long ghep trong cac mon Tieng Viet, TNXH, Dao duc, Lich su-Dia li, Nghe thuat, HDTN. Noi dung ngan gon, phu hop lua tuoi.' }
+];
+
+const defaultApps = [
+    { id: 1, name: 'Canva', desc: 'Thiet ke slide, phieu bai tap, poster dep', icon: 'fa-palette', url: 'https://canva.com' },
+    { id: 2, name: 'Wordwall', desc: 'Tao tro choi hoc tap tuong tac nhanh', icon: 'fa-gamepad', url: 'https://wordwall.net' },
+    { id: 3, name: 'Kahoot', desc: 'Quiz tuong tac, kiem tra vui nhon', icon: 'fa-question-circle', url: 'https://kahoot.com' },
+    { id: 4, name: 'Quizizz', desc: 'Bai kiem tra online, giao bai ve nha', icon: 'fa-list-check', url: 'https://quizizz.com' },
+    { id: 5, name: 'ChatGPT / Gemini', desc: 'Ho tro soan giao an, viet nhan xet', icon: 'fa-robot', url: '#' },
+    { id: 6, name: 'Mentimeter', desc: 'Khao sat y kien hoc sinh thoi gian thuc', icon: 'fa-chart-bar', url: 'https://mentimeter.com' },
+    { id: 7, name: 'Google Classroom', desc: 'Quan ly lop, giao bai, thu bai', icon: 'fa-chalkboard', url: 'https://classroom.google.com' },
+    { id: 8, name: 'Padlet', desc: 'Bang tuong tac, chia se y tuong', icon: 'fa-table-cells', url: 'https://padlet.com' }
+];
+
+const defaultKeHoach = [
+    { id: 1, title: 'Ke hoach giao duc nha truong nam hoc 2025-2026', type: 'Nam hoc' },
+    { id: 2, title: 'Phan phoi chuong trinh Tieng Viet lop 1-5 (KNTT)', type: 'Phan phoi' },
+    { id: 3, title: 'Ke hoach bai day mau theo Cong van 2345', type: 'Mau' }
+];
+
+const defaultBieuMau = [
+    { id: 1, title: 'Mau so dau bai tieu hoc', type: 'So sach' },
+    { id: 2, title: 'Mau nhan xet hoc sinh theo TT27', type: 'Nhan xet' },
+    { id: 3, title: 'Mau bao cao chuyen mon cuoi hoc ky', type: 'Bao cao' },
+    { id: 4, title: 'Mau ke hoach bai day (giao an)', type: 'Giao an' }
+];
+
+const defaultDeThi = [
+    { id: 1, title: 'De kiem tra giua ky 1 Tieng Viet lop 1', mon: 'Tieng Viet', lop: '1' },
+    { id: 2, title: 'De kiem tra cuoi ky 1 Toan lop 2', mon: 'Toan', lop: '2' },
+    { id: 3, title: 'De kiem tra giua ky 2 Tieng Viet lop 3', mon: 'Tieng Viet', lop: '3' }
+];
+
+const defaultSangKien = [
+    { id: 1, title: 'Ren ky nang doc cho hoc sinh lop 1 qua tro choi', mon: 'Tieng Viet' },
+    { id: 2, title: 'Su dung Wordwall nang cao hung thu hoc Toan', mon: 'Toan' },
+    { id: 3, title: 'To chuc hoat dong trai nghiem STEM o tieu hoc', mon: 'HDTN' }
 ];
 
 function getData(key) {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
+    const d = localStorage.getItem(key);
+    return d ? JSON.parse(d) : null;
 }
 function setData(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 function initData() {
-    const DATA_VERSION = 3;
     if (getData('eduhub_data_version') !== DATA_VERSION) {
-        localStorage.removeItem(KEYS.topics);
-        localStorage.removeItem(KEYS.videos);
-        localStorage.removeItem(KEYS.docs);
+        Object.values(KEYS).forEach(k => {
+            if (k !== KEYS.currentUser && k !== KEYS.users) localStorage.removeItem(k);
+        });
         setData('eduhub_data_version', DATA_VERSION);
     }
-    if (!getData(KEYS.topics)) setData(KEYS.topics, defaultTopics);
+    if (!getData(KEYS.subjects)) setData(KEYS.subjects, defaultSubjects);
     if (!getData(KEYS.videos)) setData(KEYS.videos, defaultVideos);
-    if (!getData(KEYS.docs)) setData(KEYS.docs, defaultDocs);
+    if (!getData(KEYS.vanBan)) setData(KEYS.vanBan, defaultVanBan);
+    if (!getData(KEYS.faq)) setData(KEYS.faq, defaultFaq);
+    if (!getData(KEYS.apps)) setData(KEYS.apps, defaultApps);
+    if (!getData(KEYS.keHoach)) setData(KEYS.keHoach, defaultKeHoach);
+    if (!getData(KEYS.bieuMau)) setData(KEYS.bieuMau, defaultBieuMau);
+    if (!getData(KEYS.deThi)) setData(KEYS.deThi, defaultDeThi);
+    if (!getData(KEYS.sangKien)) setData(KEYS.sangKien, defaultSangKien);
     if (!getData(KEYS.users)) setData(KEYS.users, []);
-    if (!getData(KEYS.payment)) {
-        setData(KEYS.payment, { bank: 'Vietcombank', account: '0123456789', name: 'EduHub', content: 'EDUHUB' });
+}
+
+function getSubjectName(id) {
+    const s = (getData(KEYS.subjects) || []).find(x => x.id == id);
+    return s ? s.name : '';
+}
+
+function renderHomepage() {
+    const subjects = getData(KEYS.subjects) || [];
+    const colors = {
+        rose: 'bg-rose-50 text-rose-600 border-rose-100',
+        sky: 'bg-sky-50 text-sky-600 border-sky-100',
+        emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+        amber: 'bg-amber-50 text-amber-600 border-amber-100',
+        violet: 'bg-violet-50 text-violet-600 border-violet-100',
+        cyan: 'bg-cyan-50 text-cyan-600 border-cyan-100',
+        pink: 'bg-pink-50 text-pink-600 border-pink-100',
+        indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
+        orange: 'bg-orange-50 text-orange-600 border-orange-100',
+        teal: 'bg-teal-50 text-teal-600 border-teal-100'
+    };
+    const el = document.getElementById('subjectsList');
+    if (el) {
+        el.innerHTML = subjects.map(s => `
+            <div class="bg-white border rounded-2xl p-5 card-hover cursor-pointer ${colors[s.color] || 'bg-slate-50'} border">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-3 bg-white/80">
+                    <i class="fas ${s.icon}"></i>
+                </div>
+                <h3 class="font-bold text-slate-900">${s.name}</h3>
+                <p class="text-xs text-slate-500 mt-1">${s.desc}</p>
+            </div>
+        `).join('');
+    }
+
+    const vb = getData(KEYS.vanBan) || [];
+    const vbEl = document.getElementById('vanBanList');
+    if (vbEl) {
+        vbEl.innerHTML = vb.map(v => `
+            <div class="bg-white border border-slate-100 rounded-xl p-4 flex gap-3 card-hover">
+                <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-amber-600 font-semibold">${v.type} · ${v.year}</div>
+                    <div class="font-medium text-sm text-slate-800 leading-snug">${v.title}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    const faq = getData(KEYS.faq) || [];
+    const faqEl = document.getElementById('faqList');
+    if (faqEl) {
+        faqEl.innerHTML = faq.map(f => `
+            <details class="bg-white border border-slate-100 rounded-xl p-4 group">
+                <summary class="font-semibold text-sm cursor-pointer list-none flex items-start gap-2">
+                    <i class="fas fa-chevron-right text-indigo-500 text-xs mt-1 group-open:rotate-90 transition"></i>
+                    ${f.q}
+                </summary>
+                <p class="text-sm text-slate-600 mt-3 pl-5 leading-relaxed">${f.a}</p>
+            </details>
+        `).join('');
+    }
+
+    const videos = getData(KEYS.videos) || [];
+    const vEl = document.getElementById('videosList');
+    if (vEl) {
+        vEl.innerHTML = videos.map(v => `
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm card-hover">
+                <div class="aspect-video bg-black">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-indigo-600 font-semibold mb-1">${getSubjectName(v.subjectId)}</div>
+                    <h3 class="font-bold text-sm leading-snug">${v.title}</h3>
+                    <p class="text-xs text-slate-400 mt-1">${v.duration || ''}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    const apps = getData(KEYS.apps) || [];
+    const aEl = document.getElementById('appsList');
+    if (aEl) {
+        aEl.innerHTML = apps.map(a => `
+            <a href="${a.url}" target="_blank" rel="noopener" class="bg-white border border-slate-100 rounded-2xl p-5 card-hover block">
+                <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3">
+                    <i class="fas ${a.icon}"></i>
+                </div>
+                <h3 class="font-bold">${a.name}</h3>
+                <p class="text-xs text-slate-500 mt-1">${a.desc}</p>
+            </a>
+        `).join('');
+    }
+
+    renderSimpleList('keHoachList', getData(KEYS.keHoach) || [], 'fa-calendar-alt', 'sky');
+    renderSimpleList('bieuMauList', getData(KEYS.bieuMau) || [], 'fa-folder-open', 'violet');
+
+    const deThi = getData(KEYS.deThi) || [];
+    const dtEl = document.getElementById('deThiList');
+    if (dtEl) {
+        dtEl.innerHTML = deThi.map(d => `
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 card-hover">
+                <div class="text-xs text-orange-600 font-semibold mb-1">${d.mon} · Lop ${d.lop}</div>
+                <h3 class="font-bold text-sm">${d.title}</h3>
+            </div>
+        `).join('');
+    }
+
+    const sk = getData(KEYS.sangKien) || [];
+    const skEl = document.getElementById('sangKienList');
+    if (skEl) {
+        skEl.innerHTML = sk.map(s => `
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 card-hover">
+                <div class="text-xs text-pink-600 font-semibold mb-1">${s.mon}</div>
+                <h3 class="font-bold text-sm">${s.title}</h3>
+            </div>
+        `).join('');
     }
 }
-function extractYoutubeId(input) {
-    if (!input) return '';
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = input.match(regExp);
-    if (match && match[2].length === 11) return match[2];
-    if (input.length === 11) return input;
-    return input.trim();
+
+function renderSimpleList(elId, items, icon, color) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.innerHTML = items.map(item => `
+        <div class="bg-white border border-slate-100 rounded-2xl p-5 card-hover flex gap-3">
+            <div class="w-10 h-10 rounded-xl bg-${color}-50 text-${color}-600 flex items-center justify-center flex-shrink-0">
+                <i class="fas ${icon}"></i>
+            </div>
+            <div>
+                <div class="text-xs text-slate-400 font-medium">${item.type || ''}</div>
+                <h3 class="font-bold text-sm">${item.title}</h3>
+            </div>
+        </div>
+    `).join('');
 }
-function getTopicName(topicId) {
-    const topics = getData(KEYS.topics) || [];
-    const t = topics.find(x => x.id == topicId);
-    return t ? t.name : 'Chưa phân loại';
-}
+
 function loginWithGoogle() {
     if (!auth) {
-        const demoUser = { uid: 'demo_' + Date.now(), displayName: 'Học sinh Demo', email: 'demo@gmail.com', photoURL: 'https://ui-avatars.com/api/?name=HS+Demo&background=6366f1&color=fff' };
+        const demoUser = { uid: 'demo_' + Date.now(), displayName: 'Giao vien Demo', email: 'gv@demo.com', photoURL: 'https://ui-avatars.com/api/?name=GV+Demo&background=4f46e5&color=fff' };
         setData(KEYS.currentUser, demoUser);
-        let users = getData(KEYS.users) || [];
-        if (!users.find(u => u.email === demoUser.email)) {
-            users.push({ ...demoUser, loginAt: new Date().toISOString() });
-            setData(KEYS.users, users);
-        }
         updateUIAfterLogin(demoUser);
-        alert('Đăng nhập Demo thành công!');
+        alert('Dang nhap Demo thanh cong!');
         return;
     }
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then((result) => {
-        const user = result.user;
-        const userData = { uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL };
+    auth.signInWithPopup(provider).then(result => {
+        const u = result.user;
+        const userData = { uid: u.uid, displayName: u.displayName, email: u.email, photoURL: u.photoURL };
         setData(KEYS.currentUser, userData);
-        let users = getData(KEYS.users) || [];
-        if (!users.find(u => u.uid === user.uid)) {
-            users.push({ ...userData, loginAt: new Date().toISOString() });
-            setData(KEYS.users, users);
-        }
         updateUIAfterLogin(userData);
-    }).catch((error) => alert('Lỗi: ' + error.message));
+    }).catch(e => alert('Loi: ' + e.message));
 }
 function logout() {
     if (auth) auth.signOut();
@@ -120,104 +288,17 @@ function logout() {
     location.reload();
 }
 function updateUIAfterLogin(user) {
-    const btnLogin = document.getElementById('btnLogin');
-    const userInfo = document.getElementById('userInfo');
-    if (btnLogin) btnLogin.classList.add('hidden');
-    if (userInfo) {
-        userInfo.classList.remove('hidden');
-        userInfo.classList.add('flex');
+    const btn = document.getElementById('btnLogin');
+    const info = document.getElementById('userInfo');
+    if (btn) btn.classList.add('hidden');
+    if (info) {
+        info.classList.remove('hidden');
+        info.classList.add('flex');
         document.getElementById('userName').textContent = user.displayName || user.email;
-        document.getElementById('userAvatar').src = user.photoURL || 'https://ui-avatars.com/api/?name=User';
+        document.getElementById('userAvatar').src = user.photoURL || '';
     }
 }
-function renderHomepage() {
-    const topics = getData(KEYS.topics) || [];
-    const topicsList = document.getElementById('topicsList');
-    if (topicsList) {
-        const colors = ['bg-rose-100 text-rose-600','bg-sky-100 text-sky-600','bg-emerald-100 text-emerald-600','bg-amber-100 text-amber-600','bg-violet-100 text-violet-600','bg-cyan-100 text-cyan-600','bg-pink-100 text-pink-600','bg-indigo-100 text-indigo-600'];
-        topicsList.innerHTML = topics.map((t,i) => `
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 card-hover text-center">
-                <div class="w-14 h-14 ${colors[i%colors.length]} rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
-                    <i class="fas ${t.icon || 'fa-folder'}"></i>
-                </div>
-                <h3 class="font-bold text-lg mb-1">${t.name}</h3>
-                <p class="text-sm text-gray-500">${t.desc || ''}</p>
-            </div>
-        `).join('');
-    }
-    const videos = getData(KEYS.videos) || [];
-    const videosList = document.getElementById('videosList');
-    if (videosList) {
-        videosList.innerHTML = videos.map(v => `
-            <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 card-hover">
-                <div class="aspect-video bg-black">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title}" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="p-5">
-                    <div class="text-xs text-indigo-600 font-semibold mb-1">${getTopicName(v.topicId)}</div>
-                    <h3 class="font-bold text-lg mb-1">${v.title}</h3>
-                    <p class="text-sm text-gray-500">${v.duration || ''}</p>
-                </div>
-            </div>
-        `).join('');
-    }
-    const docs = getData(KEYS.docs) || [];
-    const docsList = document.getElementById('docsList');
-    if (docsList) {
-        docsList.innerHTML = docs.map(d => `
-            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 card-hover">
-                <div class="h-36 bg-gradient-to-br from-sky-50 to-indigo-50 rounded-2xl mb-5 flex items-center justify-center text-5xl">📘</div>
-                <div class="text-xs text-indigo-600 font-semibold mb-1">${getTopicName(d.topicId)}</div>
-                <h3 class="font-bold mb-1">${d.title}</h3>
-                <p class="text-sm text-gray-500 mb-4">${d.pages || ''}</p>
-                <input type="text" id="code-${d.id}" placeholder="Nhập mã tải (vd: ${d.code})" class="w-full border rounded-xl px-4 py-2.5 mb-3 text-sm">
-                <button onclick="downloadDoc(${d.id}, '${d.code}')" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2.5 rounded-xl font-bold transition">Tải về</button>
-            </div>
-        `).join('');
-    }
-}
-function downloadDoc(id, correctCode) {
-    const input = document.getElementById('code-' + id);
-    if (input && input.value.trim().toUpperCase() === correctCode.toUpperCase()) {
-        alert('✅ Mã đúng! Tài liệu đang được tải...');
-    } else {
-        alert('❌ Mã không đúng. Vui lòng nhập lại.');
-    }
-}
-let snakeInterval = null;
-function startSnakeGame() {
-    const canvas = document.getElementById('snakeCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const grid = 14;
-    const tile = canvas.width / grid;
-    let snake = [{x: 7, y: 7}], dx = 1, dy = 0, food = {x: 10, y: 10}, score = 0, gameOver = false;
-    function draw() {
-        ctx.fillStyle = '#111'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ef4444'; ctx.fillRect(food.x * tile, food.y * tile, tile - 2, tile - 2);
-        ctx.fillStyle = '#22c55e'; snake.forEach(p => ctx.fillRect(p.x * tile, p.y * tile, tile - 2, tile - 2));
-    }
-    function update() {
-        if (gameOver) return;
-        const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-        if (head.x < 0 || head.x >= grid || head.y < 0 || head.y >= grid || snake.some(p => p.x === head.x && p.y === head.y)) {
-            gameOver = true; clearInterval(snakeInterval); alert('Game Over! Điểm: ' + score); return;
-        }
-        snake.unshift(head);
-        if (head.x === food.x && head.y === food.y) { score += 10; food = { x: Math.floor(Math.random() * grid), y: Math.floor(Math.random() * grid) }; }
-        else snake.pop();
-        draw();
-    }
-    document.onkeydown = (e) => {
-        if (e.key === 'ArrowUp' && dy !== 1) { dx = 0; dy = -1; }
-        if (e.key === 'ArrowDown' && dy !== -1) { dx = 0; dy = 1; }
-        if (e.key === 'ArrowLeft' && dx !== 1) { dx = -1; dy = 0; }
-        if (e.key === 'ArrowRight' && dx !== -1) { dx = 1; dy = 0; }
-    };
-    if (snakeInterval) clearInterval(snakeInterval);
-    snakeInterval = setInterval(update, 140);
-    draw();
-}
+
 function showTab(name) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -227,213 +308,18 @@ function showTab(name) {
     if (btn) btn.classList.add('active');
 }
 function loadAdminData() {
-    const topics = getData(KEYS.topics) || [];
+    const subjects = getData(KEYS.subjects) || [];
     const videos = getData(KEYS.videos) || [];
-    const docs = getData(KEYS.docs) || [];
-    const users = getData(KEYS.users) || [];
     if (document.getElementById('statTopics')) {
-        document.getElementById('statTopics').textContent = topics.length;
+        document.getElementById('statTopics').textContent = subjects.length;
         document.getElementById('statVideos').textContent = videos.length;
-        document.getElementById('statDocs').textContent = docs.length;
-        document.getElementById('statUsers').textContent = users.length;
     }
-    const topicsEl = document.getElementById('adminTopicsList');
-    if (topicsEl) {
-        topicsEl.innerHTML = topics.length ? topics.map(t => `
-            <div class="bg-white rounded-xl p-4 border flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center"><i class="fas ${t.icon || 'fa-folder'}"></i></div>
-                    <div><div class="font-medium">${t.name}</div><div class="text-sm text-gray-500">${t.desc || ''}</div></div>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="editTopic(${t.id})" class="text-blue-600 hover:bg-blue-50 px-3 py-1.5 rounded-lg text-sm"><i class="fas fa-edit"></i> Sửa</button>
-                    <button onclick="deleteItem('topics', ${t.id})" class="text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg text-sm"><i class="fas fa-trash"></i></button>
-                </div>
-            </div>`).join('') : '<p class="text-gray-500">Chưa có môn học.</p>';
-    }
-    const videoSelect = document.getElementById('videoTopic');
-    const docSelect = document.getElementById('docTopic');
-    const options = '<option value="">-- Chọn môn học --</option>' + topics.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
-    if (videoSelect) videoSelect.innerHTML = options;
-    if (docSelect) docSelect.innerHTML = options;
-    const videosEl = document.getElementById('adminVideosList');
-    if (videosEl) {
-        videosEl.innerHTML = videos.length ? videos.map(v => `
-            <div class="bg-white rounded-xl p-4 border flex items-center justify-between">
-                <div><div class="font-medium">${v.title}</div><div class="text-sm text-gray-500">${getTopicName(v.topicId)} • ${v.youtubeId}</div></div>
-                <div class="flex gap-2">
-                    <button onclick="editVideo(${v.id})" class="text-blue-600 px-3 py-1.5 rounded-lg text-sm">Sửa</button>
-                    <button onclick="deleteItem('videos', ${v.id})" class="text-red-500 px-3 py-1.5 rounded-lg text-sm">Xóa</button>
-                </div>
-            </div>`).join('') : '<p class="text-gray-500">Chưa có video.</p>';
-    }
-    const docsEl = document.getElementById('adminDocsList');
-    if (docsEl) {
-        docsEl.innerHTML = docs.length ? docs.map(d => `
-            <div class="bg-white rounded-xl p-4 border flex items-center justify-between">
-                <div><div class="font-medium">${d.title}</div><div class="text-sm text-gray-500">Mã: <code>${d.code}</code></div></div>
-                <div class="flex gap-2">
-                    <button onclick="editDoc(${d.id})" class="text-blue-600 px-3 py-1.5 rounded-lg text-sm">Sửa</button>
-                    <button onclick="deleteItem('docs', ${d.id})" class="text-red-500 px-3 py-1.5 rounded-lg text-sm">Xóa</button>
-                </div>
-            </div>`).join('') : '<p class="text-gray-500">Chưa có tài liệu.</p>';
-    }
-    const usersEl = document.getElementById('adminUsersList');
-    if (usersEl) {
-        usersEl.innerHTML = users.length ? users.map(u => `
-            <div class="flex items-center gap-3 p-3 border rounded-xl">
-                <img src="${u.photoURL || 'https://ui-avatars.com/api/?name=User'}" class="w-10 h-10 rounded-full">
-                <div><div class="font-medium">${u.displayName || ''}</div><div class="text-sm text-gray-500">${u.email}</div></div>
-            </div>`).join('') : '<p class="text-gray-500">Chưa có người dùng.</p>';
-    }
-    const pay = getData(KEYS.payment);
-    if (pay) {
-        ['payBank','payAccount','payName','payContent'].forEach((id,i) => {
-            const el = document.getElementById(id);
-            if (el) el.value = [pay.bank, pay.account, pay.name, pay.content][i] || '';
-        });
-    }
-    const current = getData(KEYS.currentUser);
-    if (current && document.getElementById('adminUser')) document.getElementById('adminUser').textContent = current.displayName || current.email;
 }
-function saveTopic() {
-    const name = document.getElementById('topicName').value.trim();
-    const desc = document.getElementById('topicDesc').value.trim();
-    const icon = document.getElementById('topicIcon').value.trim() || 'fa-folder';
-    const editId = document.getElementById('topicEditId').value;
-    if (!name) return alert('Nhập tên môn học');
-    let topics = getData(KEYS.topics) || [];
-    if (editId) {
-        const idx = topics.findIndex(t => t.id == editId);
-        if (idx !== -1) { topics[idx] = { ...topics[idx], name, desc, icon }; setData(KEYS.topics, topics); alert('Đã cập nhật!'); }
-    } else {
-        const id = topics.length ? Math.max(...topics.map(t => t.id)) + 1 : 1;
-        topics.push({ id, name, desc, icon }); setData(KEYS.topics, topics); alert('Đã thêm môn học!');
-    }
-    cancelEditTopic(); loadAdminData();
-}
-function editTopic(id) {
-    const t = (getData(KEYS.topics) || []).find(x => x.id == id);
-    if (!t) return;
-    document.getElementById('topicEditId').value = t.id;
-    document.getElementById('topicName').value = t.name;
-    document.getElementById('topicDesc').value = t.desc || '';
-    document.getElementById('topicIcon').value = t.icon || 'fa-folder';
-    document.getElementById('topicFormTitle').textContent = 'Sửa môn học';
-    document.getElementById('topicBtnText').textContent = 'Cập nhật';
-    document.getElementById('btnCancelTopic').classList.remove('hidden');
-}
-function cancelEditTopic() {
-    document.getElementById('topicEditId').value = '';
-    document.getElementById('topicName').value = '';
-    document.getElementById('topicDesc').value = '';
-    document.getElementById('topicIcon').value = 'fa-folder';
-    document.getElementById('topicFormTitle').textContent = 'Thêm môn học mới';
-    document.getElementById('topicBtnText').textContent = 'Thêm môn học';
-    document.getElementById('btnCancelTopic').classList.add('hidden');
-}
-function saveVideo() {
-    const title = document.getElementById('videoTitle').value.trim();
-    let youtubeInput = document.getElementById('videoId').value.trim();
-    const duration = document.getElementById('videoDuration').value.trim();
-    const topicId = document.getElementById('videoTopic').value || null;
-    const editId = document.getElementById('videoEditId').value;
-    if (!title || !youtubeInput) return alert('Nhập tiêu đề và YouTube ID');
-    const youtubeId = extractYoutubeId(youtubeInput);
-    let videos = getData(KEYS.videos) || [];
-    if (editId) {
-        const idx = videos.findIndex(v => v.id == editId);
-        if (idx !== -1) { videos[idx] = { ...videos[idx], title, youtubeId, duration, topicId: topicId ? Number(topicId) : null }; setData(KEYS.videos, videos); alert('Đã cập nhật!'); }
-    } else {
-        const id = videos.length ? Math.max(...videos.map(v => v.id)) + 1 : 1;
-        videos.push({ id, title, youtubeId, duration, topicId: topicId ? Number(topicId) : null }); setData(KEYS.videos, videos); alert('Đã thêm video!');
-    }
-    cancelEditVideo(); loadAdminData();
-}
-function editVideo(id) {
-    const v = (getData(KEYS.videos) || []).find(x => x.id == id);
-    if (!v) return;
-    document.getElementById('videoEditId').value = v.id;
-    document.getElementById('videoTitle').value = v.title;
-    document.getElementById('videoId').value = v.youtubeId;
-    document.getElementById('videoDuration').value = v.duration || '';
-    document.getElementById('videoTopic').value = v.topicId || '';
-    document.getElementById('videoFormTitle').textContent = 'Sửa video';
-    document.getElementById('videoBtnText').textContent = 'Cập nhật';
-    document.getElementById('btnCancelVideo').classList.remove('hidden');
-}
-function cancelEditVideo() {
-    document.getElementById('videoEditId').value = '';
-    document.getElementById('videoTitle').value = '';
-    document.getElementById('videoId').value = '';
-    document.getElementById('videoDuration').value = '';
-    document.getElementById('videoTopic').value = '';
-    document.getElementById('videoFormTitle').textContent = 'Thêm video YouTube';
-    document.getElementById('videoBtnText').textContent = 'Thêm Video';
-    document.getElementById('btnCancelVideo').classList.add('hidden');
-}
-function saveDoc() {
-    const title = document.getElementById('docTitle').value.trim();
-    const pages = document.getElementById('docPages').value.trim();
-    let code = document.getElementById('docCode').value.trim();
-    const url = document.getElementById('docUrl').value.trim();
-    const topicId = document.getElementById('docTopic').value || null;
-    const editId = document.getElementById('docEditId').value;
-    if (!title) return alert('Nhập tên tài liệu');
-    if (!code) code = Math.random().toString(36).substring(2, 8).toUpperCase();
-    let docs = getData(KEYS.docs) || [];
-    if (editId) {
-        const idx = docs.findIndex(d => d.id == editId);
-        if (idx !== -1) { docs[idx] = { ...docs[idx], title, pages, code, url, topicId: topicId ? Number(topicId) : null }; setData(KEYS.docs, docs); alert('Đã cập nhật!'); }
-    } else {
-        const id = docs.length ? Math.max(...docs.map(d => d.id)) + 1 : 1;
-        docs.push({ id, title, pages, code, url, topicId: topicId ? Number(topicId) : null }); setData(KEYS.docs, docs); alert('Đã thêm! Mã: ' + code);
-    }
-    cancelEditDoc(); loadAdminData();
-}
-function editDoc(id) {
-    const d = (getData(KEYS.docs) || []).find(x => x.id == id);
-    if (!d) return;
-    document.getElementById('docEditId').value = d.id;
-    document.getElementById('docTitle').value = d.title;
-    document.getElementById('docPages').value = d.pages || '';
-    document.getElementById('docCode').value = d.code || '';
-    document.getElementById('docUrl').value = d.url || '';
-    document.getElementById('docTopic').value = d.topicId || '';
-    document.getElementById('docFormTitle').textContent = 'Sửa tài liệu';
-    document.getElementById('docBtnText').textContent = 'Cập nhật';
-    document.getElementById('btnCancelDoc').classList.remove('hidden');
-}
-function cancelEditDoc() {
-    document.getElementById('docEditId').value = '';
-    document.getElementById('docTitle').value = '';
-    document.getElementById('docPages').value = '';
-    document.getElementById('docCode').value = '';
-    document.getElementById('docUrl').value = '';
-    document.getElementById('docTopic').value = '';
-    document.getElementById('docFormTitle').textContent = 'Thêm tài liệu';
-    document.getElementById('docBtnText').textContent = 'Thêm Tài liệu';
-    document.getElementById('btnCancelDoc').classList.add('hidden');
-}
-function deleteItem(type, id) {
-    if (!confirm('Xóa mục này?')) return;
-    let data = getData(KEYS[type]) || [];
-    data = data.filter(item => item.id != id);
-    setData(KEYS[type], data);
-    loadAdminData();
-}
-function savePayment() {
-    setData(KEYS.payment, {
-        bank: document.getElementById('payBank').value,
-        account: document.getElementById('payAccount').value,
-        name: document.getElementById('payName').value,
-        content: document.getElementById('payContent').value
-    });
-    alert('Đã lưu!');
-}
+
 document.addEventListener('DOMContentLoaded', () => {
     initData();
     const current = getData(KEYS.currentUser);
     if (current) updateUIAfterLogin(current);
-    if (document.getElementById('topicsList')) renderHomepage();
+    if (document.getElementById('subjectsList')) renderHomepage();
+    if (document.getElementById('statTopics')) loadAdminData();
 });
