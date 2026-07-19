@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – EduHub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.tab-btn{background:#f1f5f9;color:#475569}
+.tab-btn.active{background:#4f46e5;color:#fff}
+input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:none}
+</style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+<nav class="bg-white border-b sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="font-extrabold text-lg flex items-center gap-2">
+<span class="w-9 h-9 bg-indigo-600 text-white rounded-lg flex items-center justify-center">E</span> Admin EduHub
+</a>
+<a href="index.html" class="text-sm text-indigo-600 font-semibold">← Trang chủ</a>
+</div>
+</nav>
+<div class="max-w-7xl mx-auto px-4 py-6 flex gap-6">
+<aside class="w-56 flex-shrink-0 hidden md:block">
+<div class="bg-white rounded-2xl border p-3 sticky top-20 max-h-[80vh] overflow-y-auto">
+<div class="text-xs font-bold text-slate-400 uppercase px-3 mb-2">Nội dung</div>
+<button id="tab-dash" onclick="showTab('dash')" class="tab-btn active w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-chart-pie mr-2"></i>Tổng quan</button>
+<button id="tab-mon" onclick="showTab('mon')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-book mr-2"></i>Môn học</button>
+<button id="tab-bai" onclick="showTab('bai')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-list-ol mr-2"></i>Bài học (mục lục)</button>
+<button id="tab-tn" onclick="showTab('tn')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-file-alt mr-2"></i>Tài nguyên</button>
+<button id="tab-video" onclick="showTab('video')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-play-circle mr-2"></i>Video YouTube</button>
+<div class="text-xs font-bold text-slate-400 uppercase px-3 mt-4 mb-2">Hỗ trợ GV</div>
+<button id="tab-vb" onclick="showTab('vb')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-gavel mr-2"></i>Văn bản</button>
+<button id="tab-faq" onclick="showTab('faq')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-question-circle mr-2"></i>Hỏi đáp</button>
+<button id="tab-app" onclick="showTab('app')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-th mr-2"></i>Ứng dụng</button>
+<button id="tab-kh" onclick="showTab('kh')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-calendar-alt mr-2"></i>Kế hoạch</button>
+<button id="tab-bm" onclick="showTab('bm')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-folder-open mr-2"></i>Biểu mẫu</button>
+<button id="tab-dt" onclick="showTab('dt')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-file-lines mr-2"></i>Đề thi</button>
+<button id="tab-sk" onclick="showTab('sk')" class="tab-btn w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold mb-1"><i class="fas fa-lightbulb mr-2"></i>Sáng kiến</button>
+</div>
+</aside>
+<main class="flex-1 min-w-0">
+<div class="flex flex-wrap gap-1.5 mb-4 md:hidden">
+<button onclick="showTab('dash')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Tổng quan</button>
+<button onclick="showTab('mon')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Môn</button>
+<button onclick="showTab('bai')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Bài học</button>
+<button onclick="showTab('tn')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Tài nguyên</button>
+<button onclick="showTab('video')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Video</button>
+<button onclick="showTab('vb')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Văn bản</button>
+<button onclick="showTab('faq')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">FAQ</button>
+<button onclick="showTab('app')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">App</button>
+<button onclick="showTab('kh')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Kế hoạch</button>
+<button onclick="showTab('bm')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Biểu mẫu</button>
+<button onclick="showTab('dt')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">Đề thi</button>
+<button onclick="showTab('sk')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold">SKKN</button>
+</div>
+
+<div id="panel-dash" class="tab-panel">
+<h1 class="text-2xl font-extrabold mb-6">Tổng quan quản trị</h1>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white rounded-2xl p-5 border"><div class="text-3xl font-extrabold text-indigo-600" id="statTopics">0</div><div class="text-sm text-slate-500 mt-1">Môn học</div></div>
+<div class="bg-white rounded-2xl p-5 border"><div class="text-3xl font-extrabold text-rose-600" id="statBai">0</div><div class="text-sm text-slate-500 mt-1">Bài học</div></div>
+<div class="bg-white rounded-2xl p-5 border"><div class="text-3xl font-extrabold text-emerald-600" id="statDocs">0</div><div class="text-sm text-slate-500 mt-1">Tài nguyên</div></div>
+<div class="bg-white rounded-2xl p-5 border"><div class="text-3xl font-extrabold text-amber-600" id="statVideos">0</div><div class="text-sm text-slate-500 mt-1">Video</div></div>
+</div>
+<div class="bg-white rounded-2xl border p-6">
+<h3 class="font-bold mb-3">Hướng dẫn nhanh</h3>
+<ol class="text-sm text-slate-600 space-y-2 list-decimal pl-5">
+<li><b>Môn học</b> → thêm / xóa môn</li>
+<li><b>Bài học</b> → mục lục KNTT theo môn + lớp (dán tên bài + nội dung)</li>
+<li><b>Tài nguyên</b> → giáo án/slide/đề: dán nội dung, chèn link, chọn file</li>
+<li><b>Video</b> → dán link YouTube + chọn lớp</li>
+<li>Văn bản, FAQ, App, Kế hoạch, Biểu mẫu, Đề thi, Sáng kiến: dán nội dung + link</li>
+</ol>
+</div>
+</div>
+
+<div id="panel-mon" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Môn học</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<h3 class="font-bold mb-4">Thêm môn học</h3>
+<div class="grid md:grid-cols-3 gap-3">
+<input id="topicName" placeholder="Tên môn" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="topicDesc" placeholder="Mô tả ngắn" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="topicIcon" placeholder="Icon (fa-book-open)" value="fa-folder" class="border rounded-xl px-4 py-2.5 text-sm">
+</div>
+<button onclick="saveSubject()" class="mt-3 bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm môn</button>
+</div>
+<div id="adminTopicsList" class="space-y-2"></div>
+</div>
+
+<div id="panel-bai" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Bài học (mục lục KNTT)</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<h3 class="font-bold mb-4">Thêm bài học</h3>
+<div class="grid md:grid-cols-3 gap-3 mb-3">
+<select id="baiSubject" class="border rounded-xl px-4 py-2.5 text-sm"></select>
+<select id="baiLop" class="border rounded-xl px-4 py-2.5 text-sm"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
+<input id="baiStt" type="number" placeholder="STT" class="border rounded-xl px-4 py-2.5 text-sm" value="1">
+</div>
+<input id="baiTitle" placeholder="Tên bài (vd: Bài 1. A, a)" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3">
+<textarea id="baiContent" placeholder="Dán nội dung bài..." class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<button onclick="saveBaiHoc()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm bài học</button>
+</div>
+<div class="flex gap-2 mb-3 flex-wrap">
+<select id="filterBaiSubject" onchange="loadAdminData()" class="border rounded-xl px-3 py-2 text-sm"></select>
+<select id="filterBaiLop" onchange="loadAdminData()" class="border rounded-xl px-3 py-2 text-sm"><option value="">Tất cả lớp</option><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
+</div>
+<div id="adminBaiList" class="space-y-2"></div>
+</div>
+
+<div id="panel-tn" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Tài nguyên</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<h3 class="font-bold mb-4">Thêm tài nguyên</h3>
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="resourceTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm">
+<select id="resourceSubject" class="border rounded-xl px-4 py-2.5 text-sm"></select>
+<select id="resourceLop" class="border rounded-xl px-4 py-2.5 text-sm"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
+<select id="resourceType" class="border rounded-xl px-4 py-2.5 text-sm"><option>Giáo án</option><option>Slide</option><option>Đề kiểm tra</option><option>Phiếu bài tập</option><option>Kịch bản</option><option>Tài liệu</option></select>
+<select id="resourceFormat" class="border rounded-xl px-4 py-2.5 text-sm"><option>Word</option><option>PDF</option><option>PowerPoint</option><option>Hình ảnh</option><option>Link</option></select>
+<input id="resourceLink" placeholder="Chèn link (Drive...)" class="border rounded-xl px-4 py-2.5 text-sm">
+</div>
+<textarea id="resourceDesc" placeholder="Mô tả ngắn" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="2"></textarea>
+<textarea id="resourceContent" placeholder="Dán nội dung bài..." class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<div class="mb-3"><label class="text-xs font-semibold text-slate-500 block mb-1">Upload file (lưu tên tham chiếu)</label><input type="file" id="resourceFile" class="border rounded-xl px-4 py-2 text-sm w-full"></div>
+<button onclick="saveResource()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm tài nguyên</button>
+</div>
+<div id="adminResourcesList" class="space-y-2"></div>
+</div>
+
+<div id="panel-video" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Video YouTube</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<h3 class="font-bold mb-4">Thêm video</h3>
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="videoTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="videoId" placeholder="Link hoặc ID YouTube *" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="videoDuration" placeholder="Thời lượng" class="border rounded-xl px-4 py-2.5 text-sm">
+<select id="videoTopic" class="border rounded-xl px-4 py-2.5 text-sm"></select>
+<select id="videoLop" class="border rounded-xl px-4 py-2.5 text-sm"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
+</div>
+<button onclick="saveVideo()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm video</button>
+</div>
+<div id="adminVideosList" class="space-y-2"></div>
+</div>
+
+<div id="panel-vb" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Văn bản quy định</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-3 gap-3 mb-3">
+<input id="vbTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+<input id="vbYear" placeholder="Năm" class="border rounded-xl px-4 py-2.5 text-sm">
+<select id="vbType" class="border rounded-xl px-4 py-2.5 text-sm"><option>Công văn</option><option>Thông tư</option><option>Quyết định</option><option>Hướng dẫn</option></select>
+<input id="vbLink" placeholder="Link tải văn bản" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+</div>
+<textarea id="vbContent" placeholder="Dán nội dung / tóm tắt" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<button onclick="saveVanBan()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm văn bản</button>
+</div>
+<div id="adminVanBanList" class="space-y-2"></div>
+</div>
+
+<div id="panel-faq" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Hỏi đáp</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<input id="faqQ" placeholder="Câu hỏi *" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3">
+<textarea id="faqA" placeholder="Câu trả lời *" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<button onclick="saveFaq()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm FAQ</button>
+</div>
+<div id="adminFaqList" class="space-y-2"></div>
+</div>
+
+<div id="panel-app" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Ứng dụng hay</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="appName" placeholder="Tên *" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="appUrl" placeholder="Link *" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="appDesc" placeholder="Mô tả" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="appIcon" placeholder="Icon" value="fa-link" class="border rounded-xl px-4 py-2.5 text-sm">
+</div>
+<textarea id="appDetail" placeholder="Mô tả chi tiết" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="3"></textarea>
+<button onclick="saveApp()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm ứng dụng</button>
+</div>
+<div id="adminAppsList" class="space-y-2"></div>
+</div>
+
+<div id="panel-kh" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Kế hoạch</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="khTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm">
+<select id="khType" class="border rounded-xl px-4 py-2.5 text-sm"><option>Năm học</option><option>Phân phối</option><option>Mẫu</option><option>Tuần</option><option>Khác</option></select>
+<input id="khLink" placeholder="Link file" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+</div>
+<textarea id="khContent" placeholder="Dán nội dung" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<button onclick="saveKeHoach()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm kế hoạch</button>
+</div>
+<div id="adminKeHoachList" class="space-y-2"></div>
+</div>
+
+<div id="panel-bm" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Biểu mẫu</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="bmTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm">
+<select id="bmType" class="border rounded-xl px-4 py-2.5 text-sm"><option>Sổ sách</option><option>Nhận xét</option><option>Báo cáo</option><option>Giáo án</option><option>Khác</option></select>
+<input id="bmLink" placeholder="Link file" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+</div>
+<textarea id="bmContent" placeholder="Dán nội dung" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+<button onclick="saveBieuMau()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm biểu mẫu</button>
+</div>
+<div id="adminBieuMauList" class="space-y-2"></div>
+</div>
+
+<div id="panel-dt" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Đề thi</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-3 gap-3 mb-3">
+<input id="dtTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+<select id="dtLop" class="border rounded-xl px-4 py-2.5 text-sm"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
+<input id="dtMon" placeholder="Môn" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="dtLink" placeholder="Link file đề" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+</div>
+<textarea id="dtContent" placeholder="Dán nội dung đề" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="5"></textarea>
+<button onclick="saveDeThi()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm đề thi</button>
+</div>
+<div id="adminDeThiList" class="space-y-2"></div>
+</div>
+
+<div id="panel-sk" class="tab-panel hidden">
+<h1 class="text-xl font-extrabold mb-4">Sáng kiến kinh nghiệm</h1>
+<div class="bg-white rounded-2xl border p-6 mb-6">
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<input id="skTitle" placeholder="Tiêu đề *" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="skMon" placeholder="Môn / lĩnh vực" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="skLink" placeholder="Link file" class="border rounded-xl px-4 py-2.5 text-sm md:col-span-2">
+</div>
+<textarea id="skContent" placeholder="Dán tóm tắt SKKN" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="5"></textarea>
+<button onclick="saveSangKien()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Thêm sáng kiến</button>
+</div>
+<div id="adminSangKienList" class="space-y-2"></div>
+</div>
+
+</main>
+</div>
+<script src="assets/script.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
