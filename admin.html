@@ -11,6 +11,14 @@
 .tab-btn{background:#f1f5f9;color:#475569}
 .tab-btn.active{background:#4f46e5;color:#fff}
 input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:none}
+#baiEditor{min-height:180px;max-height:420px;overflow-y:auto}
+#baiEditor:focus{outline:none}
+#baiEditor img{max-width:100%;height:auto;border-radius:8px;margin:8px 0}
+#baiEditor p{margin:0.4em 0}
+#baiEditor ul,#baiEditor ol{margin:0.4em 0 0.4em 1.4em}
+.rte-btn{padding:6px 10px;border-radius:8px;font-size:13px;color:#475569;background:#f8fafc;border:1px solid #e2e8f0}
+.rte-btn:hover{background:#eef2ff;color:#4f46e5}
+.rte-btn.active{background:#e0e7ff;color:#4338ca}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
@@ -74,8 +82,8 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <div class="bg-white rounded-2xl p-5 border"><div class="text-3xl font-extrabold text-amber-600" id="statVideos">0</div><div class="text-sm text-slate-500 mt-1">Video</div></div>
 </div>
 <div class="bg-white rounded-2xl border p-6 text-sm text-slate-600 space-y-2">
-<p><b>Sửa nội dung:</b> Bấm biểu tượng bút (✏️) trên từng mục → form phía trên được điền sẵn → sửa → bấm nút Thêm/Lưu để cập nhật.</p>
-<p><b>Tìm kiếm:</b> Ô tìm phía trên lọc toàn bộ danh sách trong tab đang mở.</p>
+<p><b>Sửa nội dung:</b> Bấm ✏️ → form phía trên điền sẵn → sửa → Lưu.</p>
+<p><b>Bài học:</b> Có thể <b>Ctrl+V dán</b> chữ + ảnh từ Word/web, giữ định dạng. Đính kèm file qua link Drive hoặc chọn từ máy (ảnh nhỏ sẽ nhúng vào bài).</p>
 </div>
 </div>
 
@@ -98,10 +106,41 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 <div class="grid md:grid-cols-3 gap-3 mb-3">
 <select id="baiSubject" class="border rounded-xl px-4 py-2.5 text-sm"></select>
 <select id="baiLop" class="border rounded-xl px-4 py-2.5 text-sm"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select>
-<input id="baiStt" type="number" value="1" class="border rounded-xl px-4 py-2.5 text-sm">
+<input id="baiStt" type="number" value="1" placeholder="STT" class="border rounded-xl px-4 py-2.5 text-sm">
 </div>
 <input id="baiTitle" placeholder="Tên bài" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3">
-<textarea id="baiContent" placeholder="Nội dung bài" class="border rounded-xl px-4 py-2.5 text-sm w-full mb-3" rows="4"></textarea>
+
+<!-- Rich text toolbar -->
+<div class="border rounded-t-xl bg-slate-50 px-2 py-1.5 flex flex-wrap gap-1 items-center">
+<button type="button" class="rte-btn" onclick="rteCmd('bold')" title="Đậm"><i class="fas fa-bold"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('italic')" title="Nghiêng"><i class="fas fa-italic"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('underline')" title="Gạch chân"><i class="fas fa-underline"></i></button>
+<span class="w-px h-5 bg-slate-200 mx-0.5"></span>
+<button type="button" class="rte-btn" onclick="rteCmd('insertUnorderedList')" title="Danh sách"><i class="fas fa-list-ul"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('insertOrderedList')" title="Đánh số"><i class="fas fa-list-ol"></i></button>
+<span class="w-px h-5 bg-slate-200 mx-0.5"></span>
+<button type="button" class="rte-btn" onclick="rteInsertImage()" title="Chèn ảnh (URL hoặc máy)"><i class="fas fa-image"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('formatBlock','H3')" title="Tiêu đề"><i class="fas fa-heading"></i></button>
+<button type="button" class="rte-btn" onclick="rteCmd('removeFormat')" title="Xóa định dạng"><i class="fas fa-eraser"></i></button>
+<span class="text-xs text-slate-400 ml-2 hidden sm:inline">Ctrl+V dán chữ/ảnh từ Word, web…</span>
+</div>
+<div id="baiEditor" contenteditable="true" class="border border-t-0 rounded-b-xl px-4 py-3 text-sm w-full mb-3 bg-white prose prose-sm max-w-none" data-placeholder="Nội dung bài học… Dán (Ctrl+V) để giữ định dạng và ảnh."></div>
+<textarea id="baiContent" class="hidden"></textarea>
+
+<!-- Attachments -->
+<div class="border rounded-xl p-4 mb-3 bg-slate-50">
+<div class="text-xs font-semibold text-slate-500 mb-2 uppercase"><i class="fas fa-paperclip mr-1"></i> Tệp đính kèm</div>
+<div class="grid md:grid-cols-2 gap-3 mb-2">
+<input id="baiAttachLink" placeholder="Link Google Drive / Dropbox…" class="border rounded-xl px-4 py-2.5 text-sm bg-white">
+<input id="baiAttachName" placeholder="Tên hiển thị (vd: Giáo án Word)" class="border rounded-xl px-4 py-2.5 text-sm bg-white">
+</div>
+<label class="inline-flex items-center gap-2 text-sm text-slate-600 cursor-pointer hover:text-indigo-600">
+<input type="file" id="baiAttachFile" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" class="text-sm" onchange="onBaiFileSelect(this)">
+</label>
+<p class="text-xs text-slate-400 mt-1">Ảnh nhỏ (<500KB) sẽ nhúng vào bài. File khác: nên tải lên Drive rồi dán link.</p>
+<div id="baiAttachPreview" class="mt-2 text-sm"></div>
+</div>
+
 <button onclick="saveBaiHoc()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold">Lưu bài học</button>
 </div>
 <div class="flex gap-2 mb-3"><select id="filterBaiSubject" onchange="loadAdminData()" class="border rounded-xl px-3 py-2 text-sm"></select>
@@ -244,5 +283,76 @@ input:focus,select:focus,textarea:focus{border-color:#6366f1;box-shadow:0 0 0 3p
 </div>
 <script src="assets/script.js"></script>
 <script src="assets/admin.js"></script>
+<script>
+/* ===== Rich Text Editor helpers ===== */
+function rteCmd(cmd, val){
+  document.getElementById('baiEditor').focus();
+  document.execCommand(cmd, false, val || null);
+}
+function rteInsertImage(){
+  var url = prompt('Dán URL ảnh (hoặc để trống để chọn từ máy):');
+  if(url === null) return;
+  if(url.trim()){
+    document.getElementById('baiEditor').focus();
+    document.execCommand('insertImage', false, url.trim());
+    return;
+  }
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*';
+  inp.onchange = function(){
+    var f = inp.files && inp.files[0]; if(!f) return;
+    if(f.size > 500*1024){ alert('Ảnh nên dưới 500KB để trang không nặng. Hãy nén hoặc dùng link Drive.'); return; }
+    var r = new FileReader();
+    r.onload = function(){
+      document.getElementById('baiEditor').focus();
+      document.execCommand('insertImage', false, r.result);
+    };
+    r.readAsDataURL(f);
+  };
+  inp.click();
+}
+function onBaiFileSelect(inp){
+  var f = inp.files && inp.files[0]; if(!f) return;
+  var prev = document.getElementById('baiAttachPreview');
+  if(f.type.indexOf('image/')===0 && f.size <= 500*1024){
+    var r = new FileReader();
+    r.onload = function(){
+      document.getElementById('baiEditor').focus();
+      document.execCommand('insertImage', false, r.result);
+      prev.innerHTML = '<span class="text-emerald-600"><i class="fas fa-check"></i> Đã chèn ảnh vào nội dung bài</span>';
+    };
+    r.readAsDataURL(f);
+  } else {
+    if(!document.getElementById('baiAttachName').value) document.getElementById('baiAttachName').value = f.name;
+    prev.innerHTML = '<span class="text-amber-600"><i class="fas fa-info-circle"></i> File "'+f.name+'" — hãy tải lên Google Drive rồi dán link vào ô phía trên (trình duyệt không lưu file lớn).</span>';
+  }
+}
+/* Paste: keep HTML formatting */
+document.addEventListener('DOMContentLoaded', function(){
+  var ed = document.getElementById('baiEditor');
+  if(!ed) return;
+  ed.addEventListener('paste', function(e){
+    // Prefer HTML from clipboard so Word/web formatting is kept
+    var html = e.clipboardData && e.clipboardData.getData('text/html');
+    if(html){
+      e.preventDefault();
+      // Strip scripts/styles that may bloat
+      var clean = html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/on\w+="[^"]*"/gi,'');
+      document.execCommand('insertHTML', false, clean);
+    }
+    // else: default paste (plain text or image blob handled by browser)
+  });
+  // Placeholder behavior
+  function syncPh(){
+    if(!ed.textContent.trim()) ed.classList.add('empty');
+    else ed.classList.remove('empty');
+  }
+  ed.addEventListener('input', syncPh);
+  syncPh();
+});
+</script>
+<style>
+#baiEditor.empty:before{content:attr(data-placeholder);color:#94a3b8;pointer-events:none}
+</style>
 </body>
 </html>
