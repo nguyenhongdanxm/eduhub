@@ -1,4 +1,4 @@
-// Admin + playlist TV lop 1-4
+// Admin + playlist TV lop 1-5
 (function(){
   if(typeof KEYS==='undefined'){console.error('Load script.js first');return;}
   if(!KEYS.baiHoc)KEYS.baiHoc='eduhub_baihoc';
@@ -155,10 +155,50 @@
       {title:'Nhac tri nho: Qua ngot cuoi mua',youtubeId:'WAGSrFW2nGw',duration:'3:06',subjectId:1,lop:4},
       {title:'Nhac tri nho: Neu chung minh co phep la',youtubeId:'aRszb3aUOtU',duration:'4:13',subjectId:1,lop:4}
     ];
+    var playlistTV5=[
+      {title:'Bai hat: Khuc hat ru nhung em be lon tren lung me',youtubeId:'h-bE5exy12U',duration:'1:38',subjectId:1,lop:5},
+      {title:'Bai hat: Bai ca trai dat (ngan)',youtubeId:'PRaCJrWSK8c',duration:'0:44',subjectId:1,lop:5},
+      {title:'Bai hat: Viet Nam que huong ta',youtubeId:'DnMVsLVED70',duration:'4:11',subjectId:1,lop:5},
+      {title:'Bai hat: Bai ca trai dat',youtubeId:'GzNz1l7vOj8',duration:'2:57',subjectId:1,lop:5},
+      {title:'Bai hat: Mua',youtubeId:'Onjf-G4CRzw',duration:'4:32',subjectId:1,lop:5},
+      {title:'Bai hat: Vu dieu tren nen tho cam',youtubeId:'bjms0VFn7MQ',duration:'1:28',subjectId:1,lop:5},
+      {title:'Bai hat: Thu cua bo',youtubeId:'Ia90Zn_Wy-k',duration:'2:52',subjectId:1,lop:5},
+      {title:'Bai hat: Hat gao lang ta',youtubeId:'YYKzYqpp_Y8',duration:'2:58',subjectId:1,lop:5},
+      {title:'Bai hat: Khuc hat ru nhung em be lon tren lung me (2)',youtubeId:'XpisuvN1sgE',duration:'2:19',subjectId:1,lop:5},
+      {title:'Bai hat: Bo dung nhin bien ca',youtubeId:'omuttnJEPiM',duration:'3:34',subjectId:1,lop:5},
+      {title:'Tong hop: Bai hat Tieng Viet lop 5 HK1',youtubeId:'3E-m-49O5bM',duration:'26:41',subjectId:1,lop:5},
+      {title:'Bai hat: Tieng dan Ba La Lai Ca tren song Da',youtubeId:'gC1VYvHgyJE',duration:'4:36',subjectId:1,lop:5},
+      {title:'Bai doc: Gioi thieu sach De Men phieu luu ky',youtubeId:'XefHNoSeTDQ',duration:'2:12',subjectId:1,lop:5},
+      {title:'Bai doc: Trai nghiem de sang tao',youtubeId:'i5vrtEFYOTM',duration:'3:27',subjectId:1,lop:5},
+      {title:'Bai hat: Vuon mat troi - Qua mat trang',youtubeId:'W_3Eys5x_s8',duration:'2:24',subjectId:1,lop:5},
+      {title:'Bai doc: Canh dong vang',youtubeId:'9-mODGW7IiM',duration:'2:37',subjectId:1,lop:5},
+      {title:'Bai doc: Xin chao Xa-ha-ra',youtubeId:'jczw7Pchufg',duration:'3:23',subjectId:1,lop:5},
+      {title:'Bai doc: Bai ca ve mat troi',youtubeId:'soc2M1iK_Mc',duration:'2:49',subjectId:1,lop:5},
+      {title:'Bai doc: Nhung ngon nui nong ray',youtubeId:'lsvYoVrnSbI',duration:'2:45',subjectId:1,lop:5},
+      {title:'Bai doc: Nhung hon dao tren vinh Ha Long',youtubeId:'UwSWZhewYXc',duration:'1:45',subjectId:1,lop:5},
+      {title:'Bai doc: Hang Son Doong, nhung dieu ky thu',youtubeId:'feqIGACYcKU',duration:'2:11',subjectId:1,lop:5},
+      {title:'Bai doc: Ky dieu rung xanh',youtubeId:'ZDYqPTPSC7Y',duration:'2:25',subjectId:1,lop:5},
+      {title:'Bai hat: The gioi trong trang sach',youtubeId:'ziTlwWY8jI0',duration:'4:31',subjectId:1,lop:5},
+      {title:'Bai doc: Mam non',youtubeId:'Ms7rMdvfbAQ',duration:'2:38',subjectId:1,lop:5},
+      {title:'Bai hat: Truoc cong troi',youtubeId:'qnkAVqhgsao',duration:'4:41',subjectId:1,lop:5},
+      {title:'Bai doc: Bo suu tap doc dao',youtubeId:'Ywu4FOPp0Y8',duration:'2:39',subjectId:1,lop:5},
+      {title:'Bai hat: Tieng hat nay mam',youtubeId:'ZT2eRBde9NY',duration:'3:37',subjectId:1,lop:5},
+      {title:'Bai doc: Ben song tuoi tho',youtubeId:'1cKrzn5MZJE',duration:'2:09',subjectId:1,lop:5},
+      {title:'Bai doc: Canh dong hoa',youtubeId:'pvu7IdCy0Gc',duration:'2:46',subjectId:1,lop:5},
+      {title:'Bai doc: Thanh am cua gio',youtubeId:'sLdRNKfTk7U',duration:'3:01',subjectId:1,lop:5},
+      {title:'Bai hat: Ve ngoi nha dang xay',youtubeId:'ernH5C1TVPc',duration:'3:06',subjectId:1,lop:5},
+      {title:'Bai doc: Danh y Tue Tinh',youtubeId:'o8nucTX-7Tk',duration:'1:55',subjectId:1,lop:5},
+      {title:'Bai hat: Duong que Dong Thap Muoi',youtubeId:'l7CSdjdSUYE',duration:'2:34',subjectId:1,lop:5},
+      {title:'Nhac tri nho: Ve tham dat Mui',youtubeId:'_jArtJrksV0',duration:'4:23',subjectId:1,lop:5},
+      {title:'Tap doc: Ve dep cuoc song (P1)',youtubeId:'qjzVJ9_tSj0',duration:'3:32',subjectId:1,lop:5},
+      {title:'Nhac tri nho: Huong com mua thu',youtubeId:'2S-mvWMT4nA',duration:'4:10',subjectId:1,lop:5},
+      {title:'Nhac tri nho: Doan thuyen danh ca',youtubeId:'Z363XCd35Vc',duration:'4:22',subjectId:1,lop:5}
+    ];
     mergePlaylist(playlistTV1,'eduhub_playlist_tv1_v2',3);
     mergePlaylist(playlistTV2,'eduhub_playlist_tv2_v1',1);
     mergePlaylist(playlistTV3,'eduhub_playlist_tv3_v1',1);
     mergePlaylist(playlistTV4,'eduhub_playlist_tv4_v1',1);
+    mergePlaylist(playlistTV5,'eduhub_playlist_tv5_v1',1);
   }
 })();
 
